@@ -57,7 +57,7 @@ Bound independent Network Security Groups (NSGs) to production subnets to enforc
 3. **Outbound Internet Check:** Executed a secure programmatic web request from the private server to verify outbound routing through the NAT Gateway:
 
 <div>
-In Depth Technical Documentation: 
+In Depth Technical Documentation: https://github.com/DevonOpsExe/azure-enterprise-infrastructure-identity-lab/blob/18d889e4d336ce8f7620f0d9456c45b93442df57/Part1-Secure-Azure-Networking/TechnicalDocumentation/README.md
 Documentation by Devon Rice
 
 
