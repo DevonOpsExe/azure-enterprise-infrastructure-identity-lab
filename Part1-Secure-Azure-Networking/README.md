@@ -22,9 +22,14 @@ The network architecture is structured into dedicated subnets within the **`rg-l
 | `Clientsubnet` | `10.0.2.0/24` | 🖥️ Client PC 1 <br> 🖥️ Client PC 2 | Isolated internal zone; Protected by strict firewall rules |
 | `AzureBastionSubnet` | `10.0.1.0/26` | 🛡️ Azure Bastion Host (PaaS) | Locked down securely by Azure platform fabric |
 
+---
+
 ### Network Topology Map
 
 <img width="1408" height="768" alt="NetworkTopology " src="https://github.com/user-attachments/assets/772b7f9f-a71b-4cf4-96c1-d668bac3dda4" />
+
+---
+
 ## 🚀 Implementation Steps
 
 ### Phase 1: Virtual Network & Subnet Provisioning
@@ -52,9 +57,19 @@ Bound independent Network Security Groups (NSGs) to production subnets to enforc
 
 ## 🔍 Verification & Testing
 
-1. **Perimeter Defense Check:** Direct RDP/SSH attempts from an external home network fail immediately, verifying that zero public entry paths exist.
-2. **Bastion Proxy Validation:** Confirmed stable, secure GUI administrative sessions to Client PC 1, Client PC 2, and the Server entirely via the browser interface.
-3. **Outbound Internet Check:** Executed a secure programmatic web request from the private server to verify outbound routing through the NAT Gateway:
+* **Perimeter Defense Check:** Direct RDP/SSH attempts from an external home network fail immediately, verifying that zero public entry paths exist.
+* **Bastion Proxy Validation:** Confirmed stable, secure GUI administrative sessions to Client PC 1, Client PC 2, and the Server entirely via the browser interface.
+* **Outbound Internet Check:** Executed a secure programmatic web request from the private server to verify outbound routing through the NAT Gateway.
+
+---
+
+## 💡 Key Takeaways & Skills Demonstrated
+
+* **Micro-Segmentation:** Applied zero-trust architecture principles by explicitly isolating core identity components from standard management and client subnets.
+* **PaaS Security Integration:** Engineered cloud perimeter protection using Azure Bastion, entirely removing internet-facing public IP vectors and traditional administrative attack surfaces.
+* **Advanced NAT Design:** Implemented multi-subnet NAT binding to provide uniform, stateful outbound pathways for completely private multi-tier server architectures.
+ 
+</div>
 
 <div>
 In Depth Technical Documentation: https://github.com/DevonOpsExe/azure-enterprise-infrastructure-identity-lab/blob/18d889e4d336ce8f7620f0d9456c45b93442df57/Part1-Secure-Azure-Networking/TechnicalDocumentation/README.md
