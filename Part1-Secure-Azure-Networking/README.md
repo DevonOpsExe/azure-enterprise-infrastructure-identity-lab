@@ -25,4 +25,41 @@ The network architecture is structured into dedicated subnets within the **`rg-l
 ### Network Topology Map
 
 <img width="1408" height="768" alt="NetworkTopology " src="https://github.com/user-attachments/assets/772b7f9f-a71b-4cf4-96c1-d668bac3dda4" />
+## 🚀 Implementation Steps
 
+### Phase 1: Virtual Network & Subnet Provisioning
+* **Resource Group:** Created a centralized container named `rg-labtest-1`.
+* **Core VNet:** Configured `Vnet core` with a global address space of `10.0.0.0/16`.
+* **Micro-Segmentation:** Segmented the network into three intentional subnets:
+  * `default` (`10.0.0.0/24`) — Dedicated zone for identity servers.
+  * `Clientsubnet` (`10.0.2.0/24`) — Secure zone for client workstations.
+  * `AzureBastionSubnet` (`10.0.1.0/26`) — Reserved strictly for PaaS remote access.
+
+### Phase 2: Secure Remote Access (Azure Bastion)
+* Deployed an Azure Bastion host into `AzureBastionSubnet` to eliminate the risk of exposing administrative ports (`3389`/`22`) to the public internet.
+* All management sessions to the **Server** and **Client PCs** are securely proxied over **TLS/HTTPS (Port 443)** directly inside the Azure Web Portal.
+
+### Phase 3: Network Security Hardening (NSGs)
+Bound independent Network Security Groups (NSGs) to production subnets to enforce strict lateral isolation:
+* **`NSG-Management` (Clientsubnet):** Configured to accept inbound connections **only** from the Bastion prefix (`10.0.1.0/26`). All unsolicited public internet ingress is implicitly dropped.
+* **`NSG-Identity` (default Subnet):** Restricted inbound traffic on core infrastructure ports (`3389`, `389`, `445`, `135`) **strictly** to sources originating within `Clientsubnet` and `AzureBastionSubnet`. All other cross-subnet bypass paths are blocked.
+
+### Phase 4: Enterprise Outbound Design (NAT Gateway)
+* Provisioned a highly scalable Azure NAT Gateway tied to a static Public IP address.
+* Associated the gateway with **both** `default` and `Clientsubnet` subnets, allowing private workloads to securely pull system updates and patches while maintaining an completely hidden inbound profile.
+
+---
+
+## 🔍 Verification & Testing
+
+1. **Perimeter Defense Check:** Direct RDP/SSH attempts from an external home network fail immediately, verifying that zero public entry paths exist.
+2. **Bastion Proxy Validation:** Confirmed stable, secure GUI administrative sessions to Client PC 1, Client PC 2, and the Server entirely via the browser interface.
+3. **Outbound Internet Check:** Executed a secure programmatic web request from the private server to verify outbound routing through the NAT Gateway:
+
+<div>
+**** In Depth Technical Documentation 
+
+
+
+  
+</div>
