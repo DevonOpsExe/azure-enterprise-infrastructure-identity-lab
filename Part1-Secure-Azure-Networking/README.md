@@ -24,31 +24,4 @@ The network architecture is structured into dedicated subnets within the **`rg-l
 
 ### Network Topology Map
 ```text
-                       [ Internet ]
-                            │
-         ┌──────────────────┴──────────────────┐
-         │ (Secure Web Portal HTTPS Port 443)  │ (Outbound-Only Updates)
-         ▼                                     ▼
-┌────────────────────────────────────────────────────────────────────────┐
-│ Vnet core (10.0.0.0/16) [Resource Group: rg-labtest-1]                 │
-│                                                                        │
-│  ┌───────────────────────┐                                             │
-│  │ AzureBastionSubnet    │                                             │
-│  │ (10.0.1.0/26)         │                                             │
-│  │                       │                                             │
-│  │  [ Bastion Host ] ────┼──────────────┐                              │
-│  └───────────────────────┘              │ (Internal RDP/SSH Proxy)     │
-│                                         ▼                              │
-│  ┌───────────────────────┐    ┌───────────────────────┐                │
-│  │ Clientsubnet          │    │ default Subnet        │                │
-│  │ (10.0.2.0/24)         │    │ (10.0.0.0/24)         │                │
-│  │                       │    │                       │                │
-│  │  🖥️ Client PC 1       │    │  🖥️ Server            │                │
-│  │  🖥️ Client PC 2       │    │     (Domain Ctrl)     │                │
-│  └───────────┬───────────┘    └───────────┬───────────┘                │
-│              │                            │                            │
-│              └────────────┬───────────────┘                            │
-│                           ▼                                            │
-│                    [ NAT Gateway ] ────────────────────────────────────┘
-│                (Attached to both Subnets)                              │
-└────────────────────────────────────────────────────────────────────────┘
+![Lab Network Topology](https://i.imgur.com/a/RiMSKTO.jpg)
