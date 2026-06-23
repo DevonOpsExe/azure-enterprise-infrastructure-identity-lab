@@ -23,5 +23,6 @@ The network architecture is structured into dedicated subnets within the **`rg-l
 | `AzureBastionSubnet` | `10.0.1.0/26` | 🛡️ Azure Bastion Host (PaaS) | Locked down securely by Azure platform fabric |
 
 ### Network Topology Map
-```text
-![Lab Network Topology](https://i.imgur.com/a/RiMSKTO.jpg)
+
+<img width="1408" height="768" alt="NetworkTopology " src="https://github.com/user-attachments/assets/772b7f9f-a71b-4cf4-96c1-d668bac3dda4" />
+
