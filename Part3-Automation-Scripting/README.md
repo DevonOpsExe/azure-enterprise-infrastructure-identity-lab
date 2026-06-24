@@ -11,6 +11,7 @@ With the cloud network infrastructure ([Lab 1](../Part1-Secure-Azure-Networking)
 * Enforce standardized naming conventions, secure random password generation, and automatic OU placement.
 * Build an automated auditing utility to detect stale or inactive domain accounts, enhancing the environment's security posture.
 
+
 ---
 
 ## 🛠️ Automation Logic & Flow
@@ -21,3 +22,5 @@ Instead of manually clicking through Active Directory Users and Computers (ADUC)
 │  Employees.csv  │ ────► │ Custom Onboarding Script│ ────► │  Active Directory DS    │
 │  (Raw HR Data)  │       │ (Sanitation & Logic)   │       │ (Structured OUs & Users)│
 └─────────────────┘       └────────────────────────┘       └─────────────────────────┘
+
+---
