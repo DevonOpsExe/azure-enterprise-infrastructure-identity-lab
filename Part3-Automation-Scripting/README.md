@@ -17,6 +17,21 @@ With the cloud network infrastructure ([Lab 1](../Part1-Secure-Azure-Networking)
 ## 🛠️ Automation Logic & Flow
 Instead of manually clicking through Active Directory Users and Computers (ADUC) to create hundreds of corporate accounts, the automation pipeline reads raw data, sanitizes it, maps it to the target OU architecture, and provisions the assets programmatically.
 
+<div align="center">
+  <table>
+    <tr>
+      <td><img src="PASTE_IMAGE_1_URL_HERE" width="100%" alt="Description 1" /></td>
+      <td><img src="PASTE_IMAGE_2_URL_HERE" width="100%" alt="Description 2" /></td>
+      <td><img src="PASTE_IMAGE_3_URL_HERE" width="100%" alt="Description 3" /></td>
+    </tr>
+    <tr>
+      <td align="center"><b>Label 1</b></td>
+      <td align="center"><b>Label 2</b></td>
+      <td align="center"><b>Label 3</b></td>
+    </tr>
+  </table>
+</div>
+
 ```text
 ┌─────────────────┐       ┌────────────────────────┐       ┌─────────────────────────┐
 │  Employees.csv  │ ────► │ Custom Onboarding Script│ ────► │  Active Directory DS    │
