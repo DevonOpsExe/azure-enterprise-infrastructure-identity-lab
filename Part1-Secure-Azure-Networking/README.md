@@ -58,12 +58,42 @@ The network architecture is structured into dedicated subnets within the **`rg-l
 ### Phase 2: Secure Remote Access (Azure Bastion)
 * Deployed an Azure Bastion host into `AzureBastionSubnet` to eliminate the risk of exposing administrative ports (`3389`/`22`) to the public internet.
 * All management sessions to the **Server** and **Client PCs** are securely proxied over **TLS/HTTPS (Port 443)** directly inside the Azure Web Portal.
+<div align="center">
+  <table>
+    <tr>
+      <td><img src="PASTE_IMAGE_1_URL_HERE" width="100%" alt="Description 1" /></td>
+      <td><img src="PASTE_IMAGE_2_URL_HERE" width="100%" alt="Description 2" /></td>
+      <td><img src="PASTE_IMAGE_3_URL_HERE" width="100%" alt="Description 3" /></td>
+    </tr>
+    <tr>
+      <td align="center"><b>Label 1</b></td>
+      <td align="center"><b>Label 2</b></td>
+      <td align="center"><b>Label 3</b></td>
+    </tr>
+  </table>
+</div>
+
+
 
 ### Phase 3: Network Security Hardening (NSGs)
 Bound independent Network Security Groups (NSGs) to production subnets to enforce strict lateral isolation:
 * **`NSG-Management` (Clientsubnet):** Configured to accept inbound connections **only** from the Bastion prefix (`10.0.1.0/26`). All unsolicited public internet ingress is implicitly dropped.
 * **`NSG-Identity` (default Subnet):** Restricted inbound traffic on core infrastructure ports (`3389`, `389`, `445`, `135`) **strictly** to sources originating within `Clientsubnet` and `AzureBastionSubnet`. All other cross-subnet bypass paths are blocked.
 
+<div align="center">
+  <table>
+    <tr>
+      <td><img src="PASTE_IMAGE_1_URL_HERE" width="100%" alt="Description 1" /></td>
+      <td><img src="PASTE_IMAGE_2_URL_HERE" width="100%" alt="Description 2" /></td>
+      <td><img src="PASTE_IMAGE_3_URL_HERE" width="100%" alt="Description 3" /></td>
+    </tr>
+    <tr>
+      <td align="center"><b>Label 1</b></td>
+      <td align="center"><b>Label 2</b></td>
+      <td align="center"><b>Label 3</b></td>
+    </tr>
+  </table>
+</div>
 ### Phase 4: Enterprise Outbound Design (NAT Gateway)
 * Provisioned a highly scalable Azure NAT Gateway tied to a static Public IP address.
 * Associated the gateway with **both** `default` and `Clientsubnet` subnets, allowing private workloads to securely pull system updates and patches while maintaining an completely hidden inbound profile.
@@ -75,6 +105,21 @@ Bound independent Network Security Groups (NSGs) to production subnets to enforc
 * **Perimeter Defense Check:** Direct RDP/SSH attempts from an external home network fail immediately, verifying that zero public entry paths exist.
 * **Bastion Proxy Validation:** Confirmed stable, secure GUI administrative sessions to Client PC 1, Client PC 2, and the Server entirely via the browser interface.
 * **Outbound Internet Check:** Executed a secure programmatic web request from the private server to verify outbound routing through the NAT Gateway.
+
+<div align="center">
+  <table>
+    <tr>
+      <td><img src="PASTE_IMAGE_1_URL_HERE" width="100%" alt="Description 1" /></td>
+      <td><img src="PASTE_IMAGE_2_URL_HERE" width="100%" alt="Description 2" /></td>
+      <td><img src="PASTE_IMAGE_3_URL_HERE" width="100%" alt="Description 3" /></td>
+    </tr>
+    <tr>
+      <td align="center"><b>Label 1</b></td>
+      <td align="center"><b>Label 2</b></td>
+      <td align="center"><b>Label 3</b></td>
+    </tr>
+  </table>
+</div>
 
 ---
 
