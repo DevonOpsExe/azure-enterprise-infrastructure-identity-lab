@@ -84,14 +84,18 @@ Bound independent Network Security Groups (NSGs) to production subnets to enforc
 <div align="center">
   <table>
     <tr>
-      <td><img src="PASTE_IMAGE_1_URL_HERE" width="100%" alt="Description 1" /></td>
-      <td><img src="PASTE_IMAGE_2_URL_HERE" width="100%" alt="Description 2" /></td>
-      <td><img src="PASTE_IMAGE_3_URL_HERE" width="100%" alt="Description 3" /></td>
+      <td><img src="https://github.com/user-attachments/assets/ff9b084a-1f0a-4f11-8580-7bbdd1120981" width="100%" alt="Description 1" /></td>
+      <td><img src="https://github.com/user-attachments/assets/e3333748-737b-4385-bf26-8991959312c4" width="100%" alt="Description 2" /></td>
+      <td><img src="https://github.com/user-attachments/assets/98334232-cab4-471a-b23d-e6dc16c740b2" width="100%" alt="Description 3" /></td>
+      <td><img src="https://github.com/user-attachments/assets/6b8c0f41-ea2c-4ec6-94b8-ce4bb3bc6885" width="100%" alt="Description 4" /></td>
+      <td><img src="https://github.com/user-attachments/assets/98334232-cab4-471a-b23d-e6dc16c740b2" width="100%" alt="Description 5" /></td>
     </tr>
     <tr>
       <td align="center"><b>Label 1</b></td>
       <td align="center"><b>Label 2</b></td>
       <td align="center"><b>Label 3</b></td>
+      <td align="center"><b>Label 4</b></td>
+      <td align="center"><b>Label 5</b></td>
     </tr>
   </table>
 </div>
