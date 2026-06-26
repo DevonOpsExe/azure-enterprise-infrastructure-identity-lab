@@ -15,7 +15,7 @@ Building directly on top of the secure network backbone established in [Lab 1](.
 ---
 
 ## 🛠️ Architecture & Components
-This lab lives inside the isolated `default` subnet established in Lab 1. Inbound network access is strictly locked down by `NSG-Identity`, and administrative management is performed exclusively via secure Azure Bastion proxies or authorized hosts in the management tier.
+This lab lives inside the isolated `default` subnet established in [Lab 1](../Part1-Secure-Azure-Networking). Inbound network access is strictly locked down by `NSG-Identity`, and administrative management is performed exclusively via secure Azure Bastion proxies or authorized hosts in the management tier.
 
 * **Domain Name:** `lab.local` (Simulated Internal Domain)
 * **Domain Controller VM:** `lab-vm` (Windows Server)
