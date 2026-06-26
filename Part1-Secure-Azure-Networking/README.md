@@ -109,9 +109,9 @@ Bound independent Network Security Groups (NSGs) to production subnets to enforc
 <div align="center">
   <table>
     <tr>
-      <td><img src="PASTE_IMAGE_1_URL_HERE" width="100%" alt="Description 1" /></td>
-      <td><img src="PASTE_IMAGE_2_URL_HERE" width="100%" alt="Description 2" /></td>
-      <td><img src="PASTE_IMAGE_3_URL_HERE" width="100%" alt="Description 3" /></td>
+      <td><img src="https://github.com/user-attachments/assets/36f738e4-c88a-4cf9-bff9-189635d61636" width="100%" alt="Description 1" /></td>
+      <td><img src="https://github.com/user-attachments/assets/1e45bb84-54fb-41ec-a5dd-69cf742cbeea" width="100%" alt="Description 2" /></td>
+      <td><img src="https://github.com/user-attachments/assets/5abe744d-4fe3-4697-b97b-ef95978ede79" width="100%" alt="Description 3" /></td>
     </tr>
     <tr>
       <td align="center"><b>Label 1</b></td>
