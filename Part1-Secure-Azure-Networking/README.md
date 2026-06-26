@@ -54,6 +54,7 @@ The network architecture is structured into dedicated subnets within the **`rg-l
   </table>
 </div>
   
+---
 
 ### Phase 2: Secure Remote Access (Azure Bastion)
 * Deployed an Azure Bastion host into `AzureBastionSubnet` to eliminate the risk of exposing administrative ports (`3389`/`22`) to the public internet.
@@ -61,9 +62,9 @@ The network architecture is structured into dedicated subnets within the **`rg-l
 <div align="center">
   <table>
     <tr>
-      <td><img src="PASTE_IMAGE_1_URL_HERE" width="100%" alt="Description 1" /></td>
-      <td><img src="PASTE_IMAGE_2_URL_HERE" width="100%" alt="Description 2" /></td>
-      <td><img src="PASTE_IMAGE_3_URL_HERE" width="100%" alt="Description 3" /></td>
+      <td><img src="https://github.com/user-attachments/assets/07de8de2-600f-4f5c-89d9-593c5a93d7b3" width="100%" alt="Description 1" /></td>
+      <td><img src="https://github.com/user-attachments/assets/72fbbf52-e8d4-4811-ad53-190188854c91" width="100%" alt="Description 2" /></td>
+      <td><img src="https://github.com/user-attachments/assets/5edee49f-4df1-4e7e-9128-7d631a05260d" width="100%" alt="Description 3" /></td>
     </tr>
     <tr>
       <td align="center"><b>Label 1</b></td>
@@ -73,7 +74,7 @@ The network architecture is structured into dedicated subnets within the **`rg-l
   </table>
 </div>
 
-
+---
 
 ### Phase 3: Network Security Hardening (NSGs)
 Bound independent Network Security Groups (NSGs) to production subnets to enforce strict lateral isolation:
@@ -94,9 +95,27 @@ Bound independent Network Security Groups (NSGs) to production subnets to enforc
     </tr>
   </table>
 </div>
+
+---
+
 ### Phase 4: Enterprise Outbound Design (NAT Gateway)
 * Provisioned a highly scalable Azure NAT Gateway tied to a static Public IP address.
 * Associated the gateway with **both** `default` and `Clientsubnet` subnets, allowing private workloads to securely pull system updates and patches while maintaining an completely hidden inbound profile.
+
+<div align="center">
+  <table>
+    <tr>
+      <td><img src="PASTE_IMAGE_1_URL_HERE" width="100%" alt="Description 1" /></td>
+      <td><img src="PASTE_IMAGE_2_URL_HERE" width="100%" alt="Description 2" /></td>
+      <td><img src="PASTE_IMAGE_3_URL_HERE" width="100%" alt="Description 3" /></td>
+    </tr>
+    <tr>
+      <td align="center"><b>Label 1</b></td>
+      <td align="center"><b>Label 2</b></td>
+      <td align="center"><b>Label 3</b></td>
+    </tr>
+  </table>
+</div>
 
 ---
 
