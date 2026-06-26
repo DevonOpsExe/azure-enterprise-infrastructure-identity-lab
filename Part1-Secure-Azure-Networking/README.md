@@ -39,6 +39,21 @@ The network architecture is structured into dedicated subnets within the **`rg-l
   * `default` (`10.0.0.0/24`) — Dedicated zone for identity servers.
   * `Clientsubnet` (`10.0.2.0/24`) — Secure zone for client workstations.
   * `AzureBastionSubnet` (`10.0.1.0/26`) — Reserved strictly for PaaS remote access.
+<div align="center">
+  <table>
+    <tr>
+      <td><img src="https://github.com/user-attachments/assets/6d45da58-5467-43fa-be20-8aafb000c979" width="100%" alt="Description 1" /></td>
+      <td><img src="https://github.com/user-attachments/assets/0911381b-f1c6-45fa-9204-7b22bc8eadb7" width="100%" alt="Description 2" /></td>
+      <td><img src="https://github.com/user-attachments/assets/868def5b-b15b-4446-bb0d-881303befe40" width="100%" alt="Description 3" /></td>
+    </tr>
+    <tr>
+      <td align="center"><b>Label 1</b></td>
+      <td align="center"><b>Label 2</b></td>
+      <td align="center"><b>Label 3</b></td>
+    </tr>
+  </table>
+</div>
+  
 
 ### Phase 2: Secure Remote Access (Azure Bastion)
 * Deployed an Azure Bastion host into `AzureBastionSubnet` to eliminate the risk of exposing administrative ports (`3389`/`22`) to the public internet.
