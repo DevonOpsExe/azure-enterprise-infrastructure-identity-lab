@@ -46,6 +46,54 @@ This lab lives inside the isolated `default` subnet established in [Lab 1](../Pa
   </table>
 </div>
 
+### 🌐 Architectural Decision Note: VNet-Level Custom DNS Routing
+
+* **The Challenge:** Default cloud-provided DNS (Azure DNS) is blind to internal Active Directory environments, which causes client domain joins and authentication workflows to fail. 
+* **The Solution:** Rather than manually overriding network adapter configurations inside individual guest operating systems (shown below), DNS routing was centralized at the cloud fabric layer by modifying `Vnet core` settings to utilize a custom DNS profile pointing directly to the Domain Controller (`lab-vm` at `10.0.0.4`).
+
+<div align="center">
+  <table>
+    <tr>
+      <td><img src="PASTE_IMAGE_1_URL_HERE" width="100%" alt="Description 1" /></td>
+      <td><img src="PASTE_IMAGE_2_URL_HERE" width="100%" alt="Description 2" /></td>
+      <td><img src="PASTE_IMAGE_3_URL_HERE" width="100%" alt="Description 3" /></td>
+    </tr>
+    <tr>
+      <td align="center"><b>Label 1</b></td>
+      <td align="center"><b>Label 2</b></td>
+      <td align="center"><b>Label 3</b></td>
+    </tr>
+  </table>
+</div>
+
+* **The Impact:** * **Automated Identity Discovery:** Azure automatically propagates the identity-aware DNS server to all current and future workloads via DHCP upon boot, ensuring seamless out-of-the-box domain resolution.
+* **Hybrid Resilience:** Configured upstream DNS Forwarders within the Windows Server DNS Manager, allowing internal assets to resolve local domain queries while securely routing external requests out to the public internet via the NAT Gateway.
+
+<div align="center">
+  <table>
+    <tr>
+      <td><img src="PASTE_IMAGE_1_URL_HERE" width="100%" alt="Description 1" /></td>
+      <td><img src="PASTE_IMAGE_2_URL_HERE" width="100%" alt="Description 2" /></td>
+      <td><img src="PASTE_IMAGE_3_URL_HERE" width="100%" alt="Description 3" /></td>
+    </tr>
+    <tr>
+      <td align="center"><b>Label 1</b></td>
+      <td align="center"><b>Label 2</b></td>
+      <td align="center"><b>Label 3</b></td>
+    </tr>
+  </table>
+</div>
+
+```text
+[Client PC] 
+     │
+  (DNS Query: Where is google.com?)
+     ▼
+[lab-vm (10.0.0.4)] ──(Doesn't know)──> [DNS Forwarder: 168.63.129.16 or 8.8.8.8] ──> [Internet via NAT Gateway]
+```
+
+---
+
 ### Phase 2: Active Directory Installation & Forest Promotion
 1. Utilized **Azure Bastion** to establish a secure browser-based administrative RDP session into `lab-vm` over port 443.
 2. Installed the **Active Directory Domain Services** and **DNS Server** roles via Server Manager / PowerShell.
