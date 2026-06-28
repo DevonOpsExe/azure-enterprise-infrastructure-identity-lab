@@ -130,21 +130,6 @@ This lab lives inside the isolated `default` subnet established in [Lab 1](../Pa
 ### Phase 3: Enterprise Organizational Unit (OU) Design
 To prepare for scalable user and asset management, a structured OU hierarchy was designed and built to isolate administrative privileges and targets for Group Policy placement:
 
-<div align="center">
-  <table>
-    <tr>
-      <td><img src="PASTE_IMAGE_1_URL_HERE" width="100%" alt="Description 1" /></td>
-      <td><img src="PASTE_IMAGE_2_URL_HERE" width="100%" alt="Description 2" /></td>
-      <td><img src="PASTE_IMAGE_3_URL_HERE" width="100%" alt="Description 3" /></td>
-    </tr>
-    <tr>
-      <td align="center"><b>Label 1</b></td>
-      <td align="center"><b>Label 2</b></td>
-      <td align="center"><b>Label 3</b></td>
-    </tr>
-  </table>
-</div>
-
 ```text
 lab.local (Root)
 │
