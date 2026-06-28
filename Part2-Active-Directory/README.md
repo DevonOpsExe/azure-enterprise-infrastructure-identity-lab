@@ -74,7 +74,7 @@ This lab lives inside the isolated `default` subnet established in [Lab 1](../Pa
     <tr>
       <td><img src="https://github.com/user-attachments/assets/9af73581-dcb0-4261-8f73-05f0df31eacc" width="100%" alt="Description 1" /></td>
       <td><img src="PASTE_IMAGE_2_URL_HERE" width="100%" alt="Description 2" /></td>
-      <td><img src="(https://github.com/user-attachments/assets/9af73581-dcb0-4261-8f73-05f0df31eacc" width="100%" alt="Description 3" /></td>
+      <td><img src="https://github.com/user-attachments/assets/9af73581-dcb0-4261-8f73-05f0df31eacc" width="100%" alt="Description 3" /></td>
     </tr>
     <tr>
       <td align="center"><b>Label 1</b></td>
