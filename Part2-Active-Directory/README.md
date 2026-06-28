@@ -138,15 +138,15 @@ lab.local (Root)
     │
     ├── 📁 Groups
     │   ├── 📁 IT-Groups
-    │   │   └── 👥 SG-IT-Staff (Security Group)
+    │   │   └── 👥 SG-IT-Staff (Security Group) [Contains: IT Mock Users]
     │   ├── 📁 HR-Groups
-    │   │   └── 👥 SG-HR-Staff (Security Group)
+    │   │   └── 👥 SG-HR-Staff (Security Group) [Contains: HR Mock Users]
     │   ├── 📁 Sales-Groups
-    │   │   └── 👥 SG-Sales-Staff (Security Group)
+    │   │   └── 👥 SG-Sales-Staff (Security Group) [Contains: Sales Mock Users]
     │   ├── 📁 Finance-Groups
-    │   │   └── 👥 SG-Finance-Staff (Security Group)
+    │   │   └── 👥 SG-Finance-Staff (Security Group) [Contains: Finance Mock Users]
     │   └── 📁 Engineering-Groups
-    │       └── 👥 SG-Engineering-Staff (Security Group)
+    │       └── 👥 SG-Engineering-Staff (Security Group) [Contains: Engineering Mock Users]
     │
     ├── 📁 Workstations
     │   ├── 💻 IT-Workstations
@@ -159,10 +159,15 @@ lab.local (Root)
     │
     └── 📁 Staff
         ├── 📁 IT
+        │   └── 👤 [Imported IT User Accounts]
         ├── 📁 HR
+        │   └── 👤 [Imported HR User Accounts]
         ├── 📁 Sales
+        │   └── 👤 [Imported Sales User Accounts]
         ├── 📁 Finance
+        │   └── 👤 [Imported Finance User Accounts]
         └── 📁 Engineering
+            └── 👤 [Imported Engineering User Accounts]
 ```
 ---
 
