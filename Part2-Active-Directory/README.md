@@ -34,9 +34,9 @@ This lab lives inside the isolated `default` subnet established in [Lab 1](../Pa
 <div align="center">
   <table>
     <tr>
-      <td><img src="PASTE_IMAGE_1_URL_HERE" width="100%" alt="Description 1" /></td>
-      <td><img src="PASTE_IMAGE_2_URL_HERE" width="100%" alt="Description 2" /></td>
-      <td><img src="PASTE_IMAGE_3_URL_HERE" width="100%" alt="Description 3" /></td>
+      <td><img src="https://github.com/user-attachments/assets/f3575497-c468-4a6f-a92f-94ce6f6de0d3" width="100%" alt="Description 1" /></td>
+      <td><img src="https://github.com/user-attachments/assets/e00e0685-9a2d-4376-b100-372eab1ce205" width="100%" alt="Description 2" /></td>
+      <td><img src="https://github.com/user-attachments/assets/7b40843f-041b-49bd-a4cd-9665f9bca60e" width="100%" alt="Description 3" /></td>
     </tr>
     <tr>
       <td align="center"><b>Label 1</b></td>
@@ -54,9 +54,9 @@ This lab lives inside the isolated `default` subnet established in [Lab 1](../Pa
 <div align="center">
   <table>
     <tr>
-      <td><img src="PASTE_IMAGE_1_URL_HERE" width="100%" alt="Description 1" /></td>
-      <td><img src="PASTE_IMAGE_2_URL_HERE" width="100%" alt="Description 2" /></td>
-      <td><img src="PASTE_IMAGE_3_URL_HERE" width="100%" alt="Description 3" /></td>
+      <td><img src="https://github.com/user-attachments/assets/2df8decb-775f-4b1d-bae7-c34dad46655d" width="100%" alt="Description 1" /></td>
+      <td><img src="https://github.com/user-attachments/assets/8ed4a25d-0499-48b6-b5bc-5716466b304f" width="100%" alt="Description 2" /></td>
+      <td><img src="https://github.com/user-attachments/assets/94bf339a-5b3d-465c-a344-74268a358165" width="100%" alt="Description 3" /></td>
     </tr>
     <tr>
       <td align="center"><b>Label 1</b></td>
@@ -66,15 +66,15 @@ This lab lives inside the isolated `default` subnet established in [Lab 1](../Pa
   </table>
 </div>
 
-* **The Impact:** * **Automated Identity Discovery:** Azure automatically propagates the identity-aware DNS server to all current and future workloads via DHCP upon boot, ensuring seamless out-of-the-box domain resolution.
+* **The Impact:** * **Automated Identity Discovery:** Azure automatically propagates the identity-aware DNS server to all current and future workloads via DHCP upon boot, ensuring seamless out-of-the-box domain resolution (joining client machines to domain).
 * **Hybrid Resilience:** Configured upstream DNS Forwarders within the Windows Server DNS Manager, allowing internal assets to resolve local domain queries while securely routing external requests out to the public internet via the NAT Gateway.
 
 <div align="center">
   <table>
     <tr>
-      <td><img src="PASTE_IMAGE_1_URL_HERE" width="100%" alt="Description 1" /></td>
+      <td><img src="https://github.com/user-attachments/assets/9af73581-dcb0-4261-8f73-05f0df31eacc" width="100%" alt="Description 1" /></td>
       <td><img src="PASTE_IMAGE_2_URL_HERE" width="100%" alt="Description 2" /></td>
-      <td><img src="PASTE_IMAGE_3_URL_HERE" width="100%" alt="Description 3" /></td>
+      <td><img src="(https://github.com/user-attachments/assets/9af73581-dcb0-4261-8f73-05f0df31eacc" width="100%" alt="Description 3" /></td>
     </tr>
     <tr>
       <td align="center"><b>Label 1</b></td>
