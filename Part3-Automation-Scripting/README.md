@@ -16,6 +16,10 @@ With the cloud network infrastructure ([Lab 1](../Part1-Secure-Azure-Networking)
 
 ## 🛠️ Automation Logic & Flow
  Active Directory Schema automation
+ 
+ *
+ *
+ *
 
 <div align="center">
   <table>
