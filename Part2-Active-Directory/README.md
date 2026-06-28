@@ -148,9 +148,36 @@ To prepare for scalable user and asset management, a structured OU hierarchy was
 ```text
 lab.local (Root)
 │
-└── 🏢 Enterprise-HQ
-    ├── 📁 Groups (Security & Distribution groups)
-    ├── 📁 Workstations (Corporate endpoint computer objects)
-    ├── 📁 Servers (Member server objects)
-    └── 📁 Staff (Standard user accounts)
-        └── 👤 IT-Admin (Delegated administrative staff)
+└── 🏢 Prod_Enterprise
+    ├── 📁 Admins
+    │
+    ├── 📁 Groups
+    │   ├── 📁 IT-Groups
+    │   │   └── 👥 SG-IT-Staff (Security Group)
+    │   ├── 📁 HR-Groups
+    │   │   └── 👥 SG-HR-Staff (Security Group)
+    │   ├── 📁 Sales-Groups
+    │   │   └── 👥 SG-Sales-Staff (Security Group)
+    │   ├── 📁 Finance-Groups
+    │   │   └── 👥 SG-Finance-Staff (Security Group)
+    │   └── 📁 Engineering-Groups
+    │       └── 👥 SG-Engineering-Staff (Security Group)
+    │
+    ├── 📁 Workstations
+    │   ├── 💻 IT-Workstations
+    │   ├── 💻 HR-Workstations
+    │   ├── 💻 Sales-Workstations
+    │   ├── 💻 Finance-Workstations
+    │   └── 💻 Engineering-Workstations
+    │
+    ├── 📁 Servers
+    │
+    └── 📁 Staff
+        ├── 📁 IT
+        ├── 📁 HR
+        ├── 📁 Sales
+        ├── 📁 Finance
+        └── 📁 Engineering
+```
+---
+
