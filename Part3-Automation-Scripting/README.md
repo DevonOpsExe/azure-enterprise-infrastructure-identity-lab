@@ -15,7 +15,35 @@ With the cloud network infrastructure ([Lab 1](../Part1-Secure-Azure-Networking)
 ---
 
 ## 🛠️ Automation Logic & Flow
-Instead of manually clicking through Active Directory Users and Computers (ADUC) to create hundreds of corporate accounts, the automation pipeline reads raw data, sanitizes it, maps it to the target OU architecture, and provisions the assets programmatically.
+ Active Directory Schema automation
+
+<div align="center">
+  <table>
+    <tr>
+      <td><img src="https://github.com/user-attachments/assets/62100731-4039-4666-bcb7-08545a3bcaac" width="100%" alt="Description 1" /></td>
+      <td><img src="https://github.com/user-attachments/assets/391c1f68-f6c9-4d5e-a987-e01edfa584e8" width="100%" alt="Description 2" /></td>
+      <td><img src="https://github.com/user-attachments/assets/dde7cd21-87bf-4ac0-b104-9c7fe7344a57" width="100%" alt="Description 3" /></td>
+    </tr>
+    <tr>
+      <td align="center"><b>Label 1</b></td>
+      <td align="center"><b>Label 2</b></td>
+      <td align="center"><b>Label 3</b></td>
+    </tr>
+  </table>
+</div>
+ 
+
+
+
+
+
+
+
+
+
+
+
+* Instead of manually clicking through Active Directory Users and Computers (ADUC) to create hundreds of corporate accounts, the automation pipeline reads raw data, sanitizes it, maps it to the target OU architecture, and provisions the assets programmatically.
 
 <div align="center">
   <table>
