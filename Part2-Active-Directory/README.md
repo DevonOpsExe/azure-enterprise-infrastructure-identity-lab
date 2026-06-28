@@ -109,14 +109,20 @@ This lab lives inside the isolated `default` subnet established in [Lab 1](../Pa
 <div align="center">
   <table>
     <tr>
-      <td><img src="PASTE_IMAGE_1_URL_HERE" width="100%" alt="Description 1" /></td>
-      <td><img src="PASTE_IMAGE_2_URL_HERE" width="100%" alt="Description 2" /></td>
-      <td><img src="PASTE_IMAGE_3_URL_HERE" width="100%" alt="Description 3" /></td>
+      <td><img src="https://github.com/user-attachments/assets/de36d6ca-558a-4172-931a-92a513df7247" width="100%" alt="Description 1" /></td>
+      <td><img src="https://github.com/user-attachments/assets/3edbe395-34f3-4cc5-8812-b9ee62a93067" width="100%" alt="Description 2" /></td>
+      <td><img src="https://github.com/user-attachments/assets/66dd169f-94bc-45b2-8fbe-96a8ce83ada2" width="100%" alt="Description 3" /></td>
+      <td><img src="https://github.com/user-attachments/assets/3c1ea2af-1d48-497a-abdb-6029e1764f90" width="100%" alt="Description 4" /></td>
+      <td><img src="https://github.com/user-attachments/assets/b2629989-172a-4e06-be71-99899711999f" width="100%" alt="Description 5" /></td>
+      <td><img src="https://github.com/user-attachments/assets/e0e554a4-477e-4bb7-adce-46f88b783045" width="100%" alt="Description 6" /></td>
     </tr>
     <tr>
       <td align="center"><b>Label 1</b></td>
       <td align="center"><b>Label 2</b></td>
       <td align="center"><b>Label 3</b></td>
+      <td align="center"><b>Label 4</b></td>
+      <td align="center"><b>Label 5</b></td>
+      <td align="center"><b>Label 6</b></td>
     </tr>
   </table>
 </div>
