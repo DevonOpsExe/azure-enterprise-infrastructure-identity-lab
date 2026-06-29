@@ -69,5 +69,57 @@ With the cloud network infrastructure ([Lab 1](../Part1-Secure-Azure-Networking)
 │  Employees.csv  │ ────► │ Custom Onboarding Script│ ────► │  Active Directory DS    │
 │  (Raw HR Data)  │       │ (Sanitation & Logic)   │       │ (Structured OUs & Users)│
 └─────────────────┘       └────────────────────────┘       └─────────────────────────┘
+```
 
 ---
+
+## 🛡️ Group Policy Object (GPO) Design & Automation
+
+To enforce security compliance and restrict the attack surface across the enterprise, a Group Policy baseline was established. Rather than manually configuring policies through the Group Policy Management Console (GPMC) GUI, deployment was completely automated using the cloud-native `GroupPolicy` PowerShell module.
+
+### 📊 Group Policy Inheritance & Architecture
+
+Policies are linked strategically to enforce user-specific constraints on general staff while preventing configuration drift or lockout on administrative and domain controller accounts.
+
+```text
+lab.local (Domain Root)
+   └── 🔗 Global Account Policies (Default Domain Policy)
+       │
+       └── 🏢 Prod_Enterprise
+           ├── 📁 Staff [User Context]
+           │   ├── 🔗 Sec_Screen_Lock (Inactivity Timeout)
+           │   └── 🔗 Sec_Restrict_ControlPanel (Environment Lockdown)
+           │       ├── 📁 IT / HR / Sales / Finance / Engineering
+           │
+           └── 📁 Workstations [Computer Context]
+               └── 💻 IT-Workstations / HR-Workstations / ...
+```
+---
+
+### 🔎 Advanced Security Auditing & SOC Visibility
+
+To transform the environment from a standard operational domain into a security-monitoring platform capable of feeding a SIEM (Security Information and Event Management), an Advanced Security Audit Policy baseline was implemented. 
+
+By enforcing advanced auditing subcategories, the environment generates high-fidelity Event IDs crucial for threat hunting, compliance auditing, and detecting living-off-the-land techniques.
+
+<div align="center">
+  <table>
+    <tr>
+      <td><img src="https://github.com/user-attachments/assets/4f11df3f-08c9-4826-a3b2-d2a2e789719f" width="100%" alt="Description 1" /></td>
+      <td><img src="https://github.com/user-attachments/assets/9c8081ca-d386-4cca-8d7b-c297077103eb" width="100%" alt="Description 2" /></td>
+      <td><img src="https://github.com/user-attachments/assets/38445a02-cdf7-42fb-8b34-46b099c29663" width="100%" alt="Description 3" /></td>
+    </tr>
+    <tr>
+      <td align="center"><b>Label 1</b></td>
+      <td align="center"><b>Label 2</b></td>
+      <td align="center"><b>Label 3</b></td>
+    </tr>
+  </table>
+</div>
+
+```text
+lab.local (Domain Root)
+   └── 🏢 Prod_Enterprise
+       ├── 🔗 Sec_Advanced_Auditing (Linked at root for global visibility)
+       │   ├── 📁 Staff (Audits authentication anomalies)
+       │   └── 📁 Workstations (Audits local exploitation/process creation)
