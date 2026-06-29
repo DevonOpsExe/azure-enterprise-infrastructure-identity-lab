@@ -214,16 +214,35 @@ To enforce security compliance and restrict the attack surface across the enterp
 Policies are linked strategically to enforce user-specific constraints on general staff while preventing configuration drift or lockout on administrative and domain controller accounts.
 ```text
 lab.local (Domain Root)
-   └── 🔗 Global Account Policies (Default Domain Policy)
-       │
-       └── 🏢 Prod_Enterprise
-           ├── 📁 Staff [User Context]
-           │   ├── 🔗 Sec_Screen_Lock (Inactivity Timeout)
-           │   └── 🔗 Sec_Restrict_ControlPanel (Environment Lockdown)
-           │       ├── 📁 IT / HR / Sales / Finance / Engineering
-           │
-           └── 📁 Workstations [Computer Context]
-               └── 💻 IT-Workstations / HR-Workstations / ...
+ ├── 🔗 Sec_Password_Policy (Enforces global password complexity & lockout baselines)
+ │
+ └── 🏢 Prod_Enterprise (Enterprise Infrastructure Root)
+      ├── 🔗 Sec_Audit_Policy (Enforces high-fidelity logging across all descendant OUs)
+      │
+      ├── 📁 Staff [User Context]
+      │    ├── 🔗 Sec_Screen_Lock (Inactivity Timeout)
+      │    ├── 🔗 Sec_Restrict_ControlPanel (Environment Lockdown)
+      │    ├── 🔗 Sec_Disable_USB (Data Loss Prevention)
+      │    │
+      │    └── 📁 Department Sub-OUs
+      │         ├── 📁 IT
+      │         ├── 📁 HR
+      │         ├── 📁 Sales
+      │         ├── 📁 Finance
+      │         └── 📁 Engineering
+      │
+      ├── 📁 Workstations [Computer Context]
+      │    ├── 🔗 Sec_Win_Firewall (Mandatory host perimeter defense profile)
+      │    │
+      │    └── 📁 Endpoint Sub-OUs
+      │         ├── 💻 IT-Workstations
+      │         ├── 💻 HR-Workstations
+      │         ├── 💻 Sales-Workstations
+      │         ├── 💻 Finance-Workstations
+      │         └── 💻 Engineering-Workstations
+      │
+      └── 📁 Servers [Computer Context]
+           └── 🔗 Sec_Win_Firewall (Directly linked to maintain uniform perimeter defense)
 ```
 ### 🛡️ Core Security GPOs to Implement
 
@@ -288,7 +307,7 @@ To transform the environment from a standard operational domain into a security-
 By enforcing advanced auditing subcategories, the environment generates high-fidelity Event IDs crucial for threat hunting, compliance auditing, and detecting living-off-the-land techniques. Because these security subsystem policies alter kernel behaviors directly, validation must be queried using the system `auditpol` engine rather than standard `gpresult` wrappers.
 
 ```text
- lab.local (Domain Root)
+lab.local (Domain Root)
  ├── 🔗 Sec_Password_Policy (Enforces global password/lockout baselines)
  │
  └── 🏢 Prod_Enterprise (Organizational Unit Root)
