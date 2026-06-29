@@ -238,13 +238,48 @@ For an enterprise-grade lab environment, here are the standard baseline policies
 | **Sec_Win_Firewall** | `Workstations & Servers` | Forces the Windows Defender Firewall to stay On for all profiles and manages inbound/outbound rules centrally. |
 | **Sec_Audit_Policy** | `Prod_Enterprise (Root)` | Enables advanced logging (success/failure for logons, file access, account changes) so your future SIEM/SOC lab actually has logs to analyze! |
 
-#### ⚙️ Enforced Security Matrix
+### 📊 Enterprise Infrastructure Security Matrix
 
-| GPO Name | Target OU Link | Configuration Scope | Registry Key / Value Path | Action / Security Goal |
+The following table outlines the comprehensive security architecture programmatically deployed across the active directory forest via the automation pipeline:
+
+### 📊 Enterprise Infrastructure Security Matrix
+
+The following table outlines the comprehensive security architecture programmatically deployed across the Active Directory forest via the automation pipeline:
+
+| GPO / Policy Name | Scope Context | Target OU / Container | Technical Configuration Mechanism & Registry Path | Action / Defensive Security Goal |
 | :--- | :--- | :--- | :--- | :--- |
-| **Sec_Screen_Lock** | `OU=Staff` | User | `HKCU\Control Panel\Desktop` <br> `ScreenSaveTimeOut` = **900** | Enforces a 15-minute screen lock timeout to minimize physical tampering risks. |
-| **Sec_Screen_Lock** | `OU=Staff` | User | `HKCU\Control Panel\Desktop` <br> `ScreenSaverIsSecure` = **1** | Requires password authentication immediately upon waking the display saver. |
-| **Sec_Restrict_ControlPanel** | `OU=Staff` | User | `HKCU\Software\Microsoft\Windows\...` <br> `NoControlPanel` = **1** | Disables access to the Control Panel and Windows Settings app for standard users. |
+| **Sec_Password_Policy** | Domain Level | `lab.local` (Root) | Direct NTDS Database Modification <br> `Set-ADDomainPasswordPolicy` | Enforces **14+ character min length**, 24 password history, and a **5-strike lockout threshold** for 30 minutes to mitigate brute-force and dictionary attacks. |
+| **Sec_Screen_Lock** | User Context | `OU=Staff` | `HKCU\Control Panel\Desktop` <br> ── `ScreenSaveTimeOut` = `"900"` <br> ── `ScreenSaverIsSecure` = `"1"` <br> ── `SCRNSAVE.EXE` = `"scrnsave.scr"` | Enforces a **15-minute (900s) inactivity timeout**, flags the screensaver as secure, and forces password re-authentication to prevent physical tampering. |
+| **Sec_Restrict_ControlPanel** | User Context | `OU=Staff` | `HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer` <br> ── `NoControlPanel` = `1` (DWord) | Disables access to the Control Panel and Windows Settings app to prevent standard users from making unauthorized system tweaks. |
+| **Sec_Disable_USB** | Computer Context | `OU=Staff` | `HKLM\Software\Policies\Microsoft\Windows\RemovableStorageDevices\{53f5630d-b6bf-11d0-94f2-00a0c91efb8b}` <br> ── `Deny_Read` = `1` (DWord) <br> ── `Deny_Write` = `1` (DWord) | **Data Loss Prevention (DLP):** Targets the mass storage device hardware GUID to completely deny both Read and Write permissions on USB external drives. |
+| **Sec_Win_Firewall** | Computer Context | `OU=Workstations` & `OU=Servers` | `HKLM\Software\Policies\Microsoft\WindowsFirewall\[Profile]` <br> *(Loops Domain, Private, Public Profiles)* <br> ── `EnableFirewall` = `1` (DWord) <br> ── `DisableNotifications` = `0` (DWord) | Centrally forces the **Windows Defender Firewall state to ON** across all three major network profiles and blocks user override notifications. |
+| **Sec_Audit_Policy** | Subsystem / Kernel | `OU=Prod_Enterprise` | **SYSVOL Ingestion:** `\Policies\{GUID}\Machine\Microsoft\Windows NT\Audit\audit.csv` <br><br> **Registry Priority Keys:** <br> ── `HKLM\...\Policies\System\Audit\ProcessCreationIncludeCmdLine_Output` = `1` <br> ── `HKLM\System\CurrentControlSet\Control\Lsa\SCForceOption` = `1` | **SOC Visibility:** Generates high-fidelity event logs for **Logon/Logoff (4624/4625)**, **Account Management**, and **Process Creation (4688)** with full command-line logging enabled for threat hunting. |
+
+---
+
+### 🔍 Pipeline Execution Workflow
+
+The automation framework systematically provisions controls through the following logical phases:
+
+```text
+[Execute Script]
+       │
+       ▼
+1. Discovery ───────► Queries Active Directory for Forest, NetBIOS, and Domain DN strings.
+       │
+       ▼
+2. Provisioning ────► Iterates through a hash table to build and link empty GPOs idempotently.
+       │
+       ▼
+3. Registry Engine ─► Broadly injects HKLM/HKCU configurations for Screen Locks, USB Blocks, and Firewalls.
+       │
+       ▼
+4. AD Database ─────► Direct modification of core domain identity requirements (Passwords/Lockouts).
+       │
+       ▼
+5. SYSVOL Ingestion ──► Generates and forces low-level advanced audit auditing CSV templates into the system share.
+
+```
 
 > 💡 **Note:** Manual configuration controls were also deployed to remediate perimeter risk vectors, including account lockout policies, strict password histories, explicit network drive mapping, hardware-level USB media bans, corporate workspace canvas delivery, and the mitigation of Link-Local Multicast Name Resolution (LLMNR) to prevent local spoofing attacks.
 
