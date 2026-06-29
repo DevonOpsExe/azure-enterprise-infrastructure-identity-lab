@@ -225,6 +225,19 @@ lab.local (Domain Root)
            └── 📁 Workstations [Computer Context]
                └── 💻 IT-Workstations / HR-Workstations / ...
 ```
+### 🛡️ Core Security GPOs to Implement
+
+For an enterprise-grade lab environment, here are the standard baseline policies you'll want to create:
+
+| GPO Name | Target OU | What It Enforces (The Security Goal) |
+| :--- | :--- | :--- |
+| **Sec_Password_Policy** | `lab.local (Root)` | Standardizes length (e.g., 14+ characters), complexity, and lockouts across the whole domain. |
+| **Sec_Screen_Lock** | `Staff` | Enforces a 15-minute inactivity timeout that locks the workstation screen to prevent physical tampering. |
+| **Sec_Restrict_ControlPanel** | `Staff (or specific depts)` | Blocks non-admin staff from accessing the Control Panel or Windows Settings to stop unauthorized system tweaks. |
+| **Sec_Disable_USB** | `Staff` | Blocks removable storage drives to prevent data exfiltration and malware introduction (Data Loss Prevention). |
+| **Sec_Win_Firewall** | `Workstations & Servers` | Forces the Windows Defender Firewall to stay On for all profiles and manages inbound/outbound rules centrally. |
+| **Sec_Audit_Policy** | `Prod_Enterprise (Root)` | Enables advanced logging (success/failure for logons, file access, account changes) so your future SIEM/SOC lab actually has logs to analyze! |
+
 #### ⚙️ Enforced Security Matrix
 
 | GPO Name | Target OU Link | Configuration Scope | Registry Key / Value Path | Action / Security Goal |
