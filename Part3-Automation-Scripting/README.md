@@ -178,3 +178,76 @@ lab.local (Domain Root)
         ├── 📁 HR ─── 👤 [Imported HR User Accounts]
         └── [Sales / Finance / Engineering Staff OUs]
 ```
+---
+
+🛠️ Automation Logic & Flow
+📦 Phase 1 & 2: Active Directory Schema Automation & Bulk Ingestion
+To eliminate manual administrative overhead, directory cleanup and creation are managed via lifecycle tracking scripts.
+
+The Cleanup Engine: Explicitly targets the parent hierarchy, strips Active Directory's explicit Deny rules for deletion (-ProtectedFromAccidentalDeletion $false), and executes a bottom-up recursive purge.
+
+The Blueprint Builder: Generates core structural OUs dynamically, maps out the departmental child containers, and provisions baseline security group objects (SG-$Dept-Staff) into dedicated, segregated paths.
+
+The Ingestion Pipeline: Instead of manually clicking through Active Directory Users and Computers (ADUC) to create hundreds of corporate accounts, the automation pipeline reads raw data, sanitizes it, maps it to the target OU architecture, and provisions the assets programmatically.
+
+User provisioning is accomplished via a custom provisioning engine that ingests an external raw data payload (mock_users.csv). For every entry, the script parses corporate department schemas to map target organizational container paths, programmatically constructs individual user attributes, generates secure, random-string initial passwords, and forces a password change upon the user's initial interactive session (ChangePasswordAtLogon = $true). It automatically binds the live user object directly to its respective department global security group to guarantee seamless authorization profiles.
+┌─────────────────┐       ┌────────────────────────┐       ┌─────────────────────────┐
+│  Employees.csv  | ────► │ Custom Onboarding Script│ ────► │  Active Directory DS    │
+│  (Raw HR Data)  │       │ (Sanitation & Logic)   │       │ (Structured OUs & Users)│
+└─────────────────┘       └────────────────────────┘       └─────────────────────────┘
+---
+
+🛡️ Phase 3: Group Policy Object (GPO) Design & Automation
+To enforce security compliance and restrict the attack surface across the enterprise, a Group Policy baseline was established. Rather than manually configuring policies through the Group Policy Management Console (GPMC) GUI, deployment was completely automated using the cloud-native GroupPolicy PowerShell module.
+
+📊 Group Policy Inheritance & Architecture
+Policies are linked strategically to enforce user-specific constraints on general staff while preventing configuration drift or lockout on administrative and domain controller accounts.
+
+```text
+lab.local (Domain Root)
+   └── 🔗 Global Account Policies (Default Domain Policy)
+       │
+       └── 🏢 Prod_Enterprise
+           ├── 📁 Staff [User Context]
+           │   ├── 🔗 Sec_Screen_Lock (Inactivity Timeout)
+           │   └── 🔗 Sec_Restrict_ControlPanel (Environment Lockdown)
+           │       ├── 📁 IT / HR / Sales / Finance / Engineering
+           │
+           └── 📁 Workstations [Computer Context]
+               └── 💻 IT-Workstations / HR-Workstations / ...
+```
+GPO Name,Target OU Link,Configuration Scope,Registry Key / Value Path,Action / Security Goal
+Sec_Screen_Lock,OU=Staff,User,HKCU\Control Panel\DesktopScreenSaveTimeOut = 900,Enforces a 15-minute screen lock timeout to minimize physical tampering risks.
+Sec_Screen_Lock,OU=Staff,User,HKCU\Control Panel\DesktopScreenSaverIsSecure = 1,Requires password authentication immediately upon waking the display saver.
+Sec_Restrict_ControlPanel,OU=Staff,User,HKCU\Software\Microsoft\Windows\...NoControlPanel = 1,Disables access to the Control Panel and Windows Settings app for standard users.
+
+Note: Manual configuration controls were also deployed to remediate perimeter risk vectors, including account lockout policies, strict password histories, explicit network drive mapping, hardware-level USB media bans, corporate workspace canvas delivery, and the mitigation of Link-Local Multicast Name Resolution (LLMNR) to prevent local spoofing attacks.
+
+🔎 Advanced Security Auditing & SOC Visibility
+To transform the environment from a standard operational domain into a security-monitoring platform capable of feeding a SIEM (Security Information and Event Management) system, an Advanced Security Audit Policy baseline was implemented.
+
+By enforcing advanced auditing subcategories, the environment generates high-fidelity Event IDs crucial for threat hunting, compliance auditing, and detecting living-off-the-land techniques. Because these security subsystem policies alter kernel behaviors directly, validation must be queried using the system auditpol engine rather than standard gpresult wrappers.
+
+```text
+lab.local (Domain Root)
+   └── 🏢 Prod_Enterprise
+       ├── 🔗 Sec_Advanced_Auditing (Linked at root for global visibility)
+       │   ├── 📁 Staff (Audits authentication anomalies)
+       │   └── 📁 Workstations (Audits local exploitation/process creation)
+```
+
+Log Category,Targeting Objective,Target Event IDs,Security Purpose
+Audit Logon / Logoff,Success & Failure,"4624, 4625","Detects brute-force vectors, lateral movement, and unauthorized interactive sessions.
+Detailed Tracking,Process Creation,4688,"Captures the execution of programs and includes command-line logging to analyze malicious scripts (e.g., PowerShell/CMD attacks).
+Audit Policy Override,SCForceOption,N/A,Explicitly instructs the Windows kernel to ignore legacy audit categories in favor of strict advanced criteria settings.
+---
+🏆 Key Competencies Demonstrated
+Infrastructure-as-Code (IaC): Complete directory provisioning, cleaning, and linking executed programmatically with zero manual mouse clicks.
+
+Defensive System Hardening: Practical implementation of least privilege configurations, administrative boundary containment, physical access limits, and credential validation restrictions.
+
+SOC & Threat Hunting Readiness: Tuning directory log outputs to emit high-fidelity telemetry payloads necessary for analysis inside enterprise SIEM clusters.
+
+Cloud Resource Agility: Optimizing enterprise asset deployments under explicit compute baseline constraints by managing Azure workloads entirely via streamlined cloud architectures.
+
+
