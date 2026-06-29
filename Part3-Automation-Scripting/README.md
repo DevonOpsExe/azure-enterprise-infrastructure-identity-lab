@@ -123,3 +123,58 @@ lab.local (Domain Root)
        ├── 🔗 Sec_Advanced_Auditing (Linked at root for global visibility)
        │   ├── 📁 Staff (Audits authentication anomalies)
        │   └── 📁 Workstations (Audits local exploitation/process creation)
+```
+---
+
+# Lab 3: Enterprise Automation & Scripting with PowerShell
+
+## 📌 Project Overview
+With the cloud network infrastructure ([Lab 1](../Part1-Secure-Azure-Networking)) and Active Directory identity plane ([Lab 2](../Part2-Active-Directory)) successfully deployed within a resource-constrained cloud framework (Microsoft Azure via Google Chromebook), this final phase focuses on operational efficiency, scalability, and DevOps methodologies. 
+
+By prioritizing Infrastructure-as-Code (IaC) principles, the entire Active Directory lifecycle—from tree topology provisioning to bulk identity ingestion and Group Policy hardening—was engineered utilizing modular, idempotent PowerShell scripting.
+
+The lab is split into three phases:
+1. **Infrastructure & Lifecycle Management:** Programmatic destruction and generation of standard enterprise containers.
+2. **Automated Identity Provisioning:** Dynamic bulk ingestion and segmentation of target user objects mapped to department security groups.
+3. **Enterprise Hardening & SOC Visibility:** Implementation of strict security baselines, environmental restrictions, and high-fidelity event auditing.
+
+---
+
+## 🎯 Objectives
+* Eliminate manual administrative overhead by automating mass user onboarding using production-level directory engineering frameworks.
+* Develop a robust PowerShell script that parses external data sources (CSV) and dynamically provisions accounts.
+* Enforce standardized naming conventions, secure random password generation, and automatic OU placement.
+* Build an automated auditing utility to detect stale or inactive domain accounts, enhancing the environment's security posture.
+* Implement advanced kernel-level logging architecture to ensure infrastructure visibility for downstream SIEM integration.
+
+---
+
+## 🏗️ Enterprise Architecture & Directory Topology
+
+The logical structure of the `lab.local` forest utilizes a deeply segmented, inheritance-optimized layout designed to prevent privilege escalation and facilitate modular Group Policy targeting.
+
+```text
+lab.local (Domain Root)
+│   └── 🔗 Global Account Policies (Default Domain Policy)
+│
+└── 🏢 Prod_Enterprise
+    ├── 🔗 Sec_Advanced_Auditing (High-Fidelity Event Logging)
+    │
+    ├── 📁 Admins
+    │
+    ├── 📁 Groups
+    │   ├── 📁 IT-Groups ─── 👥 SG-IT-Staff
+    │   ├── 📁 HR-Groups ─── 👥 SG-HR-Staff
+    │   └── [Sales / Finance / Engineering Groups]
+    │
+    ├── 📁 Workstations
+    │   ├── 💻 IT-Workstations
+    │   └── [HR / Sales / Finance / Engineering Workstations]
+    │
+    ├── 📁 Servers
+    │
+    └── 📁 Staff
+        ├── 📁 IT ─── 👤 [Imported IT User Accounts] (Inherits User Restrictions)
+        ├── 📁 HR ─── 👤 [Imported HR User Accounts]
+        └── [Sales / Finance / Engineering Staff OUs]
+```
