@@ -240,10 +240,6 @@ For an enterprise-grade lab environment, here are the standard baseline policies
 
 ### 📊 Enterprise Infrastructure Security Matrix
 
-The following table outlines the comprehensive security architecture programmatically deployed across the active directory forest via the automation pipeline:
-
-### 📊 Enterprise Infrastructure Security Matrix
-
 The following table outlines the comprehensive security architecture programmatically deployed across the Active Directory forest via the automation pipeline:
 
 | GPO / Policy Name | Scope Context | Target OU / Container | Technical Configuration Mechanism & Registry Path | Action / Defensive Security Goal |
@@ -292,20 +288,32 @@ To transform the environment from a standard operational domain into a security-
 By enforcing advanced auditing subcategories, the environment generates high-fidelity Event IDs crucial for threat hunting, compliance auditing, and detecting living-off-the-land techniques. Because these security subsystem policies alter kernel behaviors directly, validation must be queried using the system `auditpol` engine rather than standard `gpresult` wrappers.
 
 ```text
-lab.local (Domain Root)
-   └── 🏢 Prod_Enterprise
-       ├── 🔗 Sec_Advanced_Auditing (Linked at root for global visibility)
-       │   ├── 📁 Staff (Audits authentication anomalies)
-       │   └── 📁 Workstations (Audits local exploitation/process creation)
+ lab.local (Domain Root)
+ ├── 🔗 Sec_Password_Policy (Enforces global password/lockout baselines)
+ │
+ └── 🏢 Prod_Enterprise (Organizational Unit Root)
+      ├── 🔗 Sec_Audit_Policy (Enforces high-fidelity event telemetry across the entire enterprise footprint)
+      │
+      ├── 📁 Staff (OU containing standard corporate identity assets)
+      │    ├── 🔗 Sec_Screen_Lock (Enforces 15-minute inactivity workspace locks)
+      │    ├── 🔗 Sec_Restrict_ControlPanel (Environment lockdown; restricts local system tweaks)
+      │    └── 🔗 Sec_Disable_USB (Endpoint Data Loss Prevention; blocks external storage)
+      │
+      ├── 📁 Workstations (OU containing enterprise endpoints)
+      │    └── 🔗 Sec_Win_Firewall (Mandatory network boundary hardening profile)
+      │
+      └── 📁 Servers (OU containing infrastructure assets)
+           └── 🔗 Sec_Win_Firewall (Inherited/linked to maintain uniform perimeter defense)
 ```
 
 #### 📊 Enforced Security Log Events
 
 | Log Category | Targeting Objective | Target Event IDs | Security Purpose |
 | :--- | :--- | :--- | :--- |
-| **Audit Logon / Logoff** | Success & Failure | `4624`, `4625` | Detects brute-force vectors, lateral movement, and unauthorized interactive sessions. |
-| **Detailed Tracking** | Process Creation | `4688` | Captures the execution of programs and includes command-line logging to analyze malicious scripts (e.g., PowerShell/CMD attacks). |
-| **Audit Policy Override** | SCForceOption | N/A | Explicitly instructs the Windows kernel to ignore legacy audit categories in favor of strict advanced criteria settings. |
+| **Audit Logon / Logoff** | Success & Failure | `4624`, `4625`, `4634` | Tracks successful authentication, failed login anomalies (brute-force vectors), lateral movement patterns, and active interactive session durations. |
+| **Account Management** | Success & Failure | *Category Level* <br> `4720`, `4722`, `4738` | Monitors user account creation, enabling, modifications, and privilege escalations to detect insider threats or persistence mechanisms. |
+| **Detailed Tracking** | Process Creation | `4688` | Captures programmatic execution payloads and enforces command-line logging to expose living-off-the-land techniques (e.g., malicious PowerShell/CMD scripts). |
+| **Audit Policy Override** | SCForceOption | N/A | Explicitly instructs the Windows kernel to ignore legacy audit categories in favor of strict advanced criteria subsettings, preventing baseline evasion. |
 ---
 #### 🛠️ Infrastructure-as-Code Auditing Deployment Script
 
