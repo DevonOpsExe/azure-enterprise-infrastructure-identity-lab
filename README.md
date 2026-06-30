@@ -12,10 +12,10 @@ The core objective of this project was to transition an unmanaged, default out-o
 Because the lab was engineered inside a cloud-native tenant, a rigid network topology was mapped out first to establish isolated broadcast domains and control traffic flow:
 * **Virtual Network (VNet) Topology:** Provisioned a dedicated Azure Virtual Network (`Enterprise-VNet`) configured with a private Class B address space (**10.0.0.0/16**). This space provides ample allocation for corporate assets while maintaining complete isolation from external networks.
 * **Subnet Segmentation:** Split the VNet into structured subnets to segregate compute resources by tier and enforce network-layer boundaries:
-  * `Identity-Subnet` (**10.0.1.0/24**): Dedicated strictly to Domain Controllers and identity management systems.
+  * `Identity-Subnet` (**10.0.1.0/26**): Dedicated strictly to Domain Controllers and identity management systems.
   * `Endpoint-Subnet` (**10.0.2.0/24**): Dedicated to client workstations (IT, HR, Sales, etc.).
-  * `Server-Subnet` (**10.0.3.0/24**): Dedicated to internal production application servers.
-* **DNS Plane Routing:** Overrode the default Azure-provided DNS routing. The `Enterprise-VNet` was statically configured to route all internal DNS resolution directly to the Domain Controller's private IP (`10.0.1.4`). This change is fundamental; it ensures that client workstations provisioned in downstream phases can successfully discover the domain, handle Kerberos tickets, and process Group Policy updates.
+  * `Server-Subnet` (**10.0.0.0/24**): Dedicated to internal production application servers.
+* **DNS Plane Routing:** Overrode the default Azure-provided DNS routing. The `Enterprise-VNet` was statically configured to route all internal DNS resolution directly to the Domain Controller's private IP (`10.0.0.4`). This change is fundamental; it ensures that client workstations provisioned in downstream phases can successfully discover the domain, handle Kerberos tickets, and process Group Policy updates.
 * **Network Security Groups (NSGs):** Implemented strict Azure NSG rules at the subnet boundaries to act as a stateless perimeter firewall. This limits external RDP management access exclusively to verified administrator IPs and restricts inter-subnet traffic to essential Active Directory communication protocols (e.g., LDAPS, Kerberos, DNS, SMB).
 
 ---
