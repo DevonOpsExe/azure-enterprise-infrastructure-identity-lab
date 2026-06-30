@@ -2,10 +2,12 @@
 
 ## Executive Summary
 
-### Project Overview
+## Project Overview
 This comprehensive portfolio project details the architecture, programmatic deployment, and operational validation of a zero-trust corporate security baseline within a Microsoft Active Directory infrastructure. Engineered entirely within **Microsoft Azure** to overcome local physical resource and hardware constraints, this environment mirrors modern, cloud-hosted enterprise operational frameworks.
 
+---
 The core objective of this project was to transition an unmanaged, default out-of-the-box infrastructure footprint into a highly secure, automated network environment. By leveraging infrastructure-as-code principles and advanced PowerShell orchestration, the project completely eliminates manual administrative overhead while engineering the rigorous security logging pipelines necessary to feed downstream SIEM/SOC analytics engines.
+
 ---
 ## Multi-Phase Lab Breakdown
 This master implementation was executed across **three distinct, sequential labs**, each addressing a critical pillar of enterprise systems security engineering:
@@ -28,6 +30,7 @@ Following the network infrastructure layout, the primary identity engine was bui
 
 ### 2.2 Programmatic Role Installation (ADDS & DNS)
 To ensure deployment efficiency and repeatability, the Active Directory Domain Services (AD-DS) role and the authoritative DNS server role were installed concurrently via an elevated PowerShell session:
+
 ```powershell
 # Install the core Active Directory and DNS binaries on the local host
 Install-WindowsFeature -Name AD-Domain-Services, DNS -IncludeManagementTools
@@ -48,7 +51,6 @@ The foundational phase established a scalable, role-based container hierarchy to
 * **Automated Identity Ingestion:** Rather than relying on manual GUI object creation, a custom PowerShell ingestion framework was developed to automatically parse simulated corporate directories, map sub-departments (IT, HR, Sales, Finance, Engineering), and provision batch identities with standardized security parameters.
 
 ### ⚙️ 3.1: Programmatic Security Baseline & GPO Automation
-[Lab 2](../Part2-Active-)
 To enforce a uniform, non-bypassable security posture across all endpoints and user contexts, a centralized security matrix was engineered and deployed via an idempotent PowerShell orchestration script. The framework programmatically generated and linked six distinct **Group Policy Objects (GPOs)** to achieve immediate environment lockdown.
 * **Identity Plane Hardening:** Remediated the Active Directory database directly to mandate a strict **14+ character password minimum length**, a 24-generation password history, and a 5-strike account lockout threshold.
 * **Host Boundary Defense:** Centrally locked the Windows Defender Firewall state to "ON" across all network operational profiles (Domain, Private, and Public) while completely disabling standard user override prompts.
