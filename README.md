@@ -1,4 +1,3 @@
-# Azure-Enterprise-Infrastructure-Identity-Lab
 # Portfolio Project: Automated Enterprise Identity, Infrastructure Hardening, & SOC Telemetry Engineering
 
 ## Executive Summary
