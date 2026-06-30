@@ -13,7 +13,7 @@ The core objective of this project was to transition an unmanaged, default out-o
 
 ## Multi-Phase Lab Breakdown
 This master implementation was executed across **three distinct, sequential labs**, each addressing a critical pillar of enterprise systems security engineering:
-### ([Lab 1](../Part1-Secure-Azure-Networking)): Network Infrastructure Architecture
+### ([Lab 1]([../Part1-Secure-Azure-Networking](https://github.com/DevonOpsExe/azure-enterprise-infrastructure-identity-lab/tree/e097467ef0e8173075d494a69b920bbeaea559ea/Part1-Secure-Azure-Networking))): Network Infrastructure Architecture
 Because the lab was engineered inside a cloud-native tenant, a rigid network topology was mapped out first to establish isolated broadcast domains and control traffic flow:
 * **Virtual Network (VNet) Topology:** Provisioned a dedicated Azure Virtual Network (`Enterprise-VNet`) configured with a private Class B address space (**10.0.0.0/16**). This space provides ample allocation for corporate assets while maintaining complete isolation from external networks.
 * **Subnet Segmentation:** Split the VNet into structured subnets to segregate compute resources by tier and enforce network-layer boundaries:
