@@ -287,6 +287,28 @@ For an enterprise-grade lab environment, here are the standard baseline policies
 | **Sec_Win_Firewall** | `Workstations & Servers` | Forces the Windows Defender Firewall to stay On for all profiles and manages inbound/outbound rules centrally. |
 | **Sec_Audit_Policy** | `Prod_Enterprise (Root)` | Enables advanced logging (success/failure for logons, file access, account changes) so your future SIEM/SOC lab actually has logs to analyze! |
 
+<div align="center">
+  <table>
+    <tr>
+      <td><img src="" width="100%" alt="Description 1" /></td>
+      <td><img src="" width="100%" alt="Description 2" /></td>
+      <td><img src="" width="100%" alt="Description 3" /></td>
+      <td><img src="" width="100%" alt="Description 4" /></td>
+      <td><img src="https://github.com/user-attachments/assets/27c3a912-905c-4af9-a1b6-48bced398456" width="100%" alt="Description 5" /></td>
+      <td><img src="https://github.com/user-attachments/assets/055ee461-684e-45fc-8d1f-c82150fbba03" width="100%" alt="Description 6" /></td>
+<img width="2736" height="1744" alt="AdvancedAuditingGPOAutoconfig2Git" src="https://github.com/user-attachments/assets/4f7a2c00-a75d-42c8-83df-04da332e1b42" />
+    </tr>
+    <tr>
+      <td align="center"><b>Label 1</b></td>
+      <td align="center"><b>Label 2</b></td>
+      <td align="center"><b>Label 3</b></td>
+      <td align="center"><b>Label 4</b></td>
+      <td align="center"><b>Label 5</b></td>
+      <td align="center"><b>Label 6</b></td>
+    </tr>
+  </table>
+</div>
+
 ### 📊 Enterprise Infrastructure Security Matrix
 
 The following table outlines the comprehensive security architecture programmatically deployed across the Active Directory forest via the automation pipeline:
@@ -342,10 +364,16 @@ By enforcing advanced auditing subcategories, the environment generates high-fid
       <td><img src="[placeholder]" width="100%" alt="Description 1" /></td>
       <td><img src="[placeholder]" width="100%" alt="Description 2" /></td>
       <td><img src="[placeholder]" width="100%" alt="Description 3" /></td>
+      <td><img src="[placeholder]" width="100%" alt="Description 4" /></td>
+      <td><img src="[placeholder]" width="100%" alt="Description 5" /></td>
+      <td><img src="[placeholder]" width="100%" alt="Description 6" /></td>
     </tr>
     <tr>
       <td align="center"><b>Label 1</b></td>
       <td align="center"><b>Label 2</b></td>
+      <td align="center"><b>Label 3</b></td>
+      <td align="center"><b>Label 3</b></td>
+      <td align="center"><b>Label 3</b></td>
       <td align="center"><b>Label 3</b></td>
     </tr>
   </table>
@@ -386,9 +414,9 @@ Because modern Windows endpoints protect security policy parameters strictly, th
 <div align="center">
   <table>
     <tr>
-      <td><img src="[placeholder]" width="100%" alt="Description 1" /></td>
-      <td><img src="[placeholder]" width="100%" alt="Description 2" /></td>
-      <td><img src="[placeholder]" width="100%" alt="Description 3" /></td>
+      <td><img src="https://github.com/user-attachments/assets/c299bed7-a492-49ec-aed6-1c77abf61840" width="100%" alt="Description 1" /></td>
+      <td><img src="https://github.com/user-attachments/assets/ca116349-a790-4a89-aaa5-91012c916bdd" width="100%" alt="Description 2" /></td>
+      <td><img src="https://github.com/user-attachments/assets/245ce5d7-7208-4826-b441-48a30f1844ca" width="100%" alt="Description 3" /></td>
     </tr>
     <tr>
       <td align="center"><b>Label 1</b></td>
