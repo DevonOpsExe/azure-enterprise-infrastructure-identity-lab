@@ -382,6 +382,23 @@ lab.local (Domain Root)
 #### 🛠️ Infrastructure-as-Code Auditing Deployment Script
 
 Because modern Windows endpoints protect security policy parameters strictly, this baseline was programmatically injected straight into the native `audit.csv` templates inside the GPO's SYSVOL folder hierarchy to guarantee successful downstream execution:
+
+<div align="center">
+  <table>
+    <tr>
+      <td><img src="[placeholder]" width="100%" alt="Description 1" /></td>
+      <td><img src="[placeholder]" width="100%" alt="Description 2" /></td>
+      <td><img src="[placeholder]" width="100%" alt="Description 3" /></td>
+    </tr>
+    <tr>
+      <td align="center"><b>Label 1</b></td>
+      <td align="center"><b>Label 2</b></td>
+      <td align="center"><b>Label 3</b></td>
+    </tr>
+  </table>
+</div>
+
+
 ```powershell
 Import-Module GroupPolicy
 Import-Module ActiveDirectory
