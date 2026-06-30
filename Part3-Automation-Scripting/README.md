@@ -191,12 +191,42 @@ To eliminate manual administrative overhead, directory cleanup and creation are 
 * **The Blueprint Builder:** Generates core structural OUs dynamically, maps out the departmental child containers, and provisions baseline security group objects (`SG-$Dept-Staff`) into dedicated, segregated paths.
 * **The Ingestion Pipeline:** Instead of manually clicking through Active Directory Users and Computers (ADUC) to create hundreds of corporate accounts, the automation pipeline reads raw data, sanitizes it, maps it to the target OU architecture, and provisions the assets programmatically.
 
+<div align="center">
+  <table>
+    <tr>
+      <td><img src="https://github.com/user-attachments/assets/62100731-4039-4666-bcb7-08545a3bcaac" width="100%" alt="Description 1" /></td>
+      <td><img src="https://github.com/user-attachments/assets/391c1f68-f6c9-4d5e-a987-e01edfa584e8" width="100%" alt="Description 2" /></td>
+      <td><img src="https://github.com/user-attachments/assets/dde7cd21-87bf-4ac0-b104-9c7fe7344a57" width="100%" alt="Description 3" /></td>
+    </tr>
+    <tr>
+      <td align="center"><b>Label 1</b></td>
+      <td align="center"><b>Label 2</b></td>
+      <td align="center"><b>Label 3</b></td>
+    </tr>
+  </table>
+</div>
+
 User provisioning is accomplished via a custom provisioning engine that ingests an external raw data payload (`mock_users.csv`). For every entry, the script:
 1. Parses corporate department schemas to map target organizational container paths.
 2. Programmatically constructs individual user attributes.
 3. Generates secure, random-string initial passwords.
 4. Forces a password change upon the user's initial interactive session (`ChangePasswordAtLogon = $true`).
 5. Automatically binds the live user object directly to its respective department global security group to guarantee seamless authorization profiles.
+
+<div align="center">
+  <table>
+    <tr>
+      <td><img src="https://github.com/user-attachments/assets/4f11df3f-08c9-4826-a3b2-d2a2e789719f" width="100%" alt="Description 1" /></td>
+      <td><img src="https://github.com/user-attachments/assets/9c8081ca-d386-4cca-8d7b-c297077103eb" width="100%" alt="Description 2" /></td>
+      <td><img src="https://github.com/user-attachments/assets/38445a02-cdf7-42fb-8b34-46b099c29663" width="100%" alt="Description 3" /></td>
+    </tr>
+    <tr>
+      <td align="center"><b>Label 1</b></td>
+      <td align="center"><b>Label 2</b></td>
+      <td align="center"><b>Label 3</b></td>
+    </tr>
+  </table>
+</div>
 
 ```text
 ┌─────────────────┐       ┌────────────────────────┐       ┌─────────────────────────┐
@@ -305,6 +335,21 @@ The automation framework systematically provisions controls through the followin
 To transform the environment from a standard operational domain into a security-monitoring platform capable of feeding a SIEM (Security Information and Event Management) system, an **Advanced Security Audit Policy** baseline was implemented.
 
 By enforcing advanced auditing subcategories, the environment generates high-fidelity Event IDs crucial for threat hunting, compliance auditing, and detecting living-off-the-land techniques. Because these security subsystem policies alter kernel behaviors directly, validation must be queried using the system `auditpol` engine rather than standard `gpresult` wrappers.
+
+<div align="center">
+  <table>
+    <tr>
+      <td><img src="[placeholder]" width="100%" alt="Description 1" /></td>
+      <td><img src="[placeholder]" width="100%" alt="Description 2" /></td>
+      <td><img src="[placeholder]" width="100%" alt="Description 3" /></td>
+    </tr>
+    <tr>
+      <td align="center"><b>Label 1</b></td>
+      <td align="center"><b>Label 2</b></td>
+      <td align="center"><b>Label 3</b></td>
+    </tr>
+  </table>
+</div>
 
 ```text
 lab.local (Domain Root)
