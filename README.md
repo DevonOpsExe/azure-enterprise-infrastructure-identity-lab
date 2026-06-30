@@ -1,7 +1,7 @@
 # Azure-Enterprise-Infrastructure-Identity-Lab
 # Portfolio Project: Automated Enterprise Identity, Infrastructure Hardening, & SOC Telemetry Engineering
 
-## 1. Executive Summary
+## Executive Summary
 
 ### 1.1 Project Overview
 This comprehensive portfolio project details the architecture, programmatic deployment, and operational validation of a zero-trust corporate security baseline within a Microsoft Active Directory infrastructure. Engineered entirely within **Microsoft Azure** to overcome local physical resource and hardware constraints, this environment mirrors modern, cloud-hosted enterprise operational frameworks.
