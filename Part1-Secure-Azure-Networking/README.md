@@ -144,6 +144,21 @@ Bound independent Network Security Groups (NSGs) to production subnets to enforc
 
 ---
 
+### 🛡️ Architectural Design Decision: Elimination of Public IP Addresses
+
+During the initial provisioning phase, all public IP addresses were systematically deleted from client workstations (`Endpoint-Subnet`) and internal production servers (`Server-Subnet`). This restriction was engineered to satisfy two primary enterprise-level design criteria:
+
+#### 1. Enforcement of Deterministic DNS Routing & Domain Discovery
+By default, Azure VMs equipped with public IPs can default to Azure's public infrastructure for external routing and initial name resolution. 
+* By stripping the public IPs and restricting the assets to purely private network interfaces (NICs), the virtual machines were forced to communicate strictly within the **`Enterprise-VNet` (lab-vm-vnet) (10.0.0.0/16)** boundary.
+* This mandates that all client endpoints utilize the statically defined internal DNS server—the primary Domain Controller (**10.0.0.4**). 
+* This restriction ensures flawless Active Directory domain discovery, reliable Kerberos ticket granting, and predictable Group Policy processing (`gpupdate /force`) without external routing interference.
+
+#### 2. Reduction of the Public Attack Surface (Zero Trust Compliance)
+Exposing infrastructure management ports (e.g., RDP/3389) to the public internet invites automated brute-force attacks and credential stuffing vectors from malicious internet-wide scans. 
+* Adhering to a strict **Zero Trust** architecture, all inbound edge exposure was eliminated.
+* In a production deployment, this layout mandates the use of a secure, isolated management path (such as an Azure Bastion host or a point-to-site VPN gateway). This guarantees that administrative access is restricted entirely to authenticated, internal sessions, effectively neutralizing the external network-layer threat vector.
+
 ## 💡 Key Takeaways & Skills Demonstrated
 
 * **Micro-Segmentation:** Applied zero-trust architecture principles by explicitly isolating core identity components from standard management and client subnets.
