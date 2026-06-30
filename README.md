@@ -24,6 +24,7 @@ Because the lab was engineered inside a cloud-native tenant, a rigid network top
 This master implementation was executed across **three distinct, sequential labs**, each addressing a critical pillar of enterprise systems security engineering:
 
 ### 📁 Lab 1: Directory Topology & Automated Identity Ingestion
+[Lab 1](../Part1-Secure-Azure-Networking)
 The foundational phase established a scalable, role-based container hierarchy to cleanly isolate and govern corporate assets within the pre-configured network subnets.
 * **Structural OU Architecture:** Engineered a tiered Organizational Unit (OU) design under a root corporate container (`Prod_Enterprise`). To strictly limit lateral movement paths, user identity containers (`Staff`) were completely segregated from compute endpoints (`Workstations`) and infrastructure assets (`Servers`).
 * **Automated Identity Ingestion:** Rather than relying on manual GUI object creation, a custom PowerShell ingestion framework was developed to automatically parse simulated corporate directories, map sub-departments (IT, HR, Sales, Finance, Engineering), and provision batch identities with standardized security parameters.
