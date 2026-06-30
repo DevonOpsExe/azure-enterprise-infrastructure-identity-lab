@@ -50,7 +50,7 @@ Once the forest feature wrapper initialized and forced a system reboot, post-dep
 
 ---
 
-### 📁 ([Lab3](../: Active Directory Topology & Automated Identity Ingestion
+### 📁 ([Lab3](../Part3-Automation-Scripting)): Active Directory Topology & Automated Identity Ingestion
 
 The foundational phase established a scalable, role-based container hierarchy to cleanly isolate and govern corporate assets within the pre-configured network subnets.
 * **Structural OU Architecture:** Engineered a tiered Organizational Unit (OU) design under a root corporate container (`Prod_Enterprise`). To strictly limit lateral movement paths, user identity containers (`Staff`) were completely segregated from compute endpoints (`Workstations`) and infrastructure assets (`Servers`).
