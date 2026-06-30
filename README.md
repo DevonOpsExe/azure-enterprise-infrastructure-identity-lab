@@ -26,7 +26,7 @@ Because the lab was engineered inside a cloud-native tenant, a rigid network top
 
 ---
 
-### 📁 ([Lab 2](../Part2-Active-Directory)):Windows Server Provisioning & Active Directory Core Installation
+### 📁 ([Lab 2](Part2-Active-Directory)):Windows Server Provisioning & Active Directory Core Installation
 Following the network infrastructure layout, the primary identity engine was built by deploying a virtualized Windows Server instance and promoting it to an enterprise Root Domain Controller. This phase established the centralized identity plane, Kerberos authentication realm, and internal DNS root for the entire virtual network.
 
 ### 2.1 Compute Provisioning & Core OS Initialization
@@ -51,7 +51,7 @@ Once the forest feature wrapper initialized and forced a system reboot, post-dep
 
 ---
 
-### 📁 ([Lab3](../Part3-Automation-Scripting)): Active Directory Topology & Automated Identity Ingestion
+### 📁 ([Lab3](/Part3-Automation-Scripting)): Active Directory Topology & Automated Identity Ingestion
 
 The foundational phase established a scalable, role-based container hierarchy to cleanly isolate and govern corporate assets within the pre-configured network subnets.
 * **Structural OU Architecture:** Engineered a tiered Organizational Unit (OU) design under a root corporate container (`Prod_Enterprise`). To strictly limit lateral movement paths, user identity containers (`Staff`) were completely segregated from compute endpoints (`Workstations`) and infrastructure assets (`Servers`).
