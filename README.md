@@ -13,7 +13,7 @@ The core objective of this project was to transition an unmanaged, default out-o
 
 ## Multi-Phase Lab Breakdown
 This master implementation was executed across **three distinct, sequential labs**, each addressing a critical pillar of enterprise systems security engineering:
-### ([Lab 1](../Part1-Secure-Azure-Networking))1: Network Infrastructure Architecture
+### ([Lab 1](../Part1-Secure-Azure-Networking)): Network Infrastructure Architecture
 Because the lab was engineered inside a cloud-native tenant, a rigid network topology was mapped out first to establish isolated broadcast domains and control traffic flow:
 * **Virtual Network (VNet) Topology:** Provisioned a dedicated Azure Virtual Network (`Enterprise-VNet`) configured with a private Class B address space (**10.0.0.0/16**). This space provides ample allocation for corporate assets while maintaining complete isolation from external networks.
 * **Subnet Segmentation:** Split the VNet into structured subnets to segregate compute resources by tier and enforce network-layer boundaries:
@@ -25,7 +25,7 @@ Because the lab was engineered inside a cloud-native tenant, a rigid network top
 
 ---
 
-### 📁 ([Lab 2](../Part2-Active-Directory))2:Windows Server Provisioning & Active Directory Core Installation
+### 📁 ([Lab 2](../Part2-Active-Directory)):Windows Server Provisioning & Active Directory Core Installation
 Following the network infrastructure layout, the primary identity engine was built by deploying a virtualized Windows Server instance and promoting it to an enterprise Root Domain Controller. This phase established the centralized identity plane, Kerberos authentication realm, and internal DNS root for the entire virtual network.
 
 ### 2.1 Compute Provisioning & Core OS Initialization
@@ -50,7 +50,7 @@ Once the forest feature wrapper initialized and forced a system reboot, post-dep
 
 ---
 
-### 📁 ([Lab3](../3: Active Directory Topology & Automated Identity Ingestion
+### 📁 ([Lab3](../: Active Directory Topology & Automated Identity Ingestion
 
 The foundational phase established a scalable, role-based container hierarchy to cleanly isolate and govern corporate assets within the pre-configured network subnets.
 * **Structural OU Architecture:** Engineered a tiered Organizational Unit (OU) design under a root corporate container (`Prod_Enterprise`). To strictly limit lateral movement paths, user identity containers (`Staff`) were completely segregated from compute endpoints (`Workstations`) and infrastructure assets (`Servers`).
