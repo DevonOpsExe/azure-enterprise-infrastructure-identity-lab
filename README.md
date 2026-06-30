@@ -6,9 +6,11 @@
 This comprehensive portfolio project details the architecture, programmatic deployment, and operational validation of a zero-trust corporate security baseline within a Microsoft Active Directory infrastructure. Engineered entirely within **Microsoft Azure** to overcome local physical resource and hardware constraints, this environment mirrors modern, cloud-hosted enterprise operational frameworks.
 
 ---
+
 The core objective of this project was to transition an unmanaged, default out-of-the-box infrastructure footprint into a highly secure, automated network environment. By leveraging infrastructure-as-code principles and advanced PowerShell orchestration, the project completely eliminates manual administrative overhead while engineering the rigorous security logging pipelines necessary to feed downstream SIEM/SOC analytics engines.
 
 ---
+
 ## Multi-Phase Lab Breakdown
 This master implementation was executed across **three distinct, sequential labs**, each addressing a critical pillar of enterprise systems security engineering:
 ### 1: Network Infrastructure Architecture
@@ -20,7 +22,9 @@ Because the lab was engineered inside a cloud-native tenant, a rigid network top
   * `Server-Subnet` (**10.0.0.0/24**): Dedicated to internal production application servers.
 * **DNS Plane Routing:** Overrode the default Azure-provided DNS routing. The `Enterprise-VNet` was statically configured to route all internal DNS resolution directly to the Domain Controller's private IP (`10.0.0.4`). This change is fundamental; it ensures that client workstations provisioned in downstream phases can successfully discover the domain, handle Kerberos tickets, and process Group Policy updates.
 * **Network Security Groups (NSGs):** Implemented strict Azure NSG rules at the subnet boundaries to act as a stateless perimeter firewall. This limits external RDP management access exclusively to verified administrator IPs and restricts inter-subnet traffic to essential Active Directory communication protocols (e.g., LDAPS, Kerberos, DNS, SMB).
+
 ---
+
 ### 📁 2:Windows Server Provisioning & Active Directory Core Installation
 Following the network infrastructure layout, the primary identity engine was built by deploying a virtualized Windows Server instance and promoting it to an enterprise Root Domain Controller. This phase established the centralized identity plane, Kerberos authentication realm, and internal DNS root for the entire virtual network.
 
@@ -42,7 +46,9 @@ Once the forest feature wrapper initialized and forced a system reboot, post-dep
 
 * **Active Directory Integrated Zones:** Configured the `lab.local` zone as an Active Directory-integrated primary zone, ensuring that zone data is securely replicated alongside standard NTDS directory data across all future domain controllers.
 * **Forward Lookup & Reverse Lookup Zones:** Verified the automatic generation of Forward Lookup Zones for domain locator services (SRV records) and programmatically initialized a Reverse Lookup Zone for the `10.0.0.0/16` subnet space to support absolute Pointer (PTR) record resolution.
-* **Upstream Forwarders:** Configured secure, public upstream forwarders (e.g., Cloudflare `1.1.1.1` / Google `8.8.8.8`) at the server level. This guarantees that internal domain assets can resolve external web resources safely, while routing internal `*.lab.local` traffic strictly inside the private virtual network.
+* **Upstream Forwarders:** Configured secure, public upstream forwarders (e.g., Azure Magic IP `168.63.129.16`) at the server level. This guarantees that internal domain assets can resolve external web resources safely, while routing internal `*.lab.local` traffic strictly inside the private virtual network.
+
+---
 
 ### 📁 3: Active Directory Topology & Automated Identity Ingestion
 
