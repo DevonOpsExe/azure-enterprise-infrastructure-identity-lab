@@ -138,3 +138,11 @@ The following table outlines the comprehensive security controls programmaticall
 * **Zero-Trust Baseline Architecture:** Establishes a strict corporate security perimeter that neutralizes common entry-level threat vectors, including physical machine tampering, USB-bound malware introduction, credential harvesting, and brute-force discovery.
 * **Defensive Automation Proof-of-Work:** Demonstrates complete mastery over systems automation, registry engineering, and programmatic Active Directory database orchestration without relying on third-party deployment toolsets.
 * **Audit Compliance & Visibility:** Aligns the environment's identity and monitoring infrastructure with professional governance standards (such as **CIS Controls** and **NIST 800-53** benchmarks), providing an elite data source for threat hunting, compliance verification, and SIEM monitoring labs.
+---
+> ### 🛡️ Architectural Note: Strategic Elimination of Public IP Addresses
+> 
+> A deliberate design decision was executed to **permanently delete all public IP addresses** associated with the client workstations (`Endpoint-Subnet`) and internal production systems (`Server-Subnet`). 
+> 
+> By restricting these cloud assets strictly to private virtual network interfaces (NICs), the environment achieves two critical outcomes:
+> * **Enforced Identity Ingestion & DNS Routing:** Without external public IP paths, all compute assets are forced to route name resolution exclusively through the internal private network space, making the primary Domain Controller (**10.0.0.4**) the absolute authoritative DNS root. This guarantees seamless domain join discovery and reliable Kerberos ticket execution.
+> * **Zero-Trust Attack Surface Reduction:** Eliminating public IPs mitigates the risk of internet-wide automated port scanning and brute-force discovery vectors against critical infrastructure access points (e.g., RDP/3389), aligning the lab's boundary perimeter with modern enterprise-grade security hardening baselines.
