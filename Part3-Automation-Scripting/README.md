@@ -1,136 +1,6 @@
 # Lab 3: Enterprise Automation & Scripting with PowerShell
 
 ## 📌 Project Overview
-With the cloud network infrastructure ([Lab 1](../Part1-Secure-Azure-Networking)) and Active Directory identity plane ([Lab 2](../Part2-Active-Directory)) successfully deployed, this final phase focuses on operational efficiency, scalability, and DevOps methodologies. This project documents the development and execution of custom PowerShell scripting to automate bulk user provisioning, lifecycle management, and security auditing within the `lab.local` domain.
-
----
-
-## 🎯 Objectives
-* Eliminate manual administrative overhead by automating mass user onboarding.
-* Develop a robust PowerShell script that parses external data sources (CSV) and dynamically provisions accounts.
-* Enforce standardized naming conventions, secure random password generation, and automatic OU placement.
-* Build an automated auditing utility to detect stale or inactive domain accounts, enhancing the environment's security posture.
-
-
----
-
-## 🛠️ Automation Logic & Flow
- Active Directory Schema automation
- 
- *
- *
- *
-
-<div align="center">
-  <table>
-    <tr>
-      <td><img src="https://github.com/user-attachments/assets/62100731-4039-4666-bcb7-08545a3bcaac" width="100%" alt="Description 1" /></td>
-      <td><img src="https://github.com/user-attachments/assets/391c1f68-f6c9-4d5e-a987-e01edfa584e8" width="100%" alt="Description 2" /></td>
-      <td><img src="https://github.com/user-attachments/assets/dde7cd21-87bf-4ac0-b104-9c7fe7344a57" width="100%" alt="Description 3" /></td>
-    </tr>
-    <tr>
-      <td align="center"><b>Label 1</b></td>
-      <td align="center"><b>Label 2</b></td>
-      <td align="center"><b>Label 3</b></td>
-    </tr>
-  </table>
-</div>
- 
-
-
-
-
-
-
-
-
-
-
-
-* Instead of manually clicking through Active Directory Users and Computers (ADUC) to create hundreds of corporate accounts, the automation pipeline reads raw data, sanitizes it, maps it to the target OU architecture, and provisions the assets programmatically.
-
-<div align="center">
-  <table>
-    <tr>
-      <td><img src="https://github.com/user-attachments/assets/4f11df3f-08c9-4826-a3b2-d2a2e789719f" width="100%" alt="Description 1" /></td>
-      <td><img src="https://github.com/user-attachments/assets/9c8081ca-d386-4cca-8d7b-c297077103eb" width="100%" alt="Description 2" /></td>
-      <td><img src="https://github.com/user-attachments/assets/38445a02-cdf7-42fb-8b34-46b099c29663" width="100%" alt="Description 3" /></td>
-    </tr>
-    <tr>
-      <td align="center"><b>Label 1</b></td>
-      <td align="center"><b>Label 2</b></td>
-      <td align="center"><b>Label 3</b></td>
-    </tr>
-  </table>
-</div>
-
-```text
-┌─────────────────┐       ┌────────────────────────┐       ┌─────────────────────────┐
-│  Employees.csv  │ ────► │ Custom Onboarding Script│ ────► │  Active Directory DS    │
-│  (Raw HR Data)  │       │ (Sanitation & Logic)   │       │ (Structured OUs & Users)│
-└─────────────────┘       └────────────────────────┘       └─────────────────────────┘
-```
-
----
-
-## 🛡️ Group Policy Object (GPO) Design & Automation
-
-To enforce security compliance and restrict the attack surface across the enterprise, a Group Policy baseline was established. Rather than manually configuring policies through the Group Policy Management Console (GPMC) GUI, deployment was completely automated using the cloud-native `GroupPolicy` PowerShell module.
-
-### 📊 Group Policy Inheritance & Architecture
-
-Policies are linked strategically to enforce user-specific constraints on general staff while preventing configuration drift or lockout on administrative and domain controller accounts.
-
-```text
-lab.local (Domain Root)
-   └── 🔗 Global Account Policies (Default Domain Policy)
-       │
-       └── 🏢 Prod_Enterprise
-           ├── 📁 Staff [User Context]
-           │   ├── 🔗 Sec_Screen_Lock (Inactivity Timeout)
-           │   └── 🔗 Sec_Restrict_ControlPanel (Environment Lockdown)
-           │       ├── 📁 IT / HR / Sales / Finance / Engineering
-           │
-           └── 📁 Workstations [Computer Context]
-               └── 💻 IT-Workstations / HR-Workstations / ...
-```
----
-
-### 🔎 Advanced Security Auditing & SOC Visibility
-
-To transform the environment from a standard operational domain into a security-monitoring platform capable of feeding a SIEM (Security Information and Event Management), an Advanced Security Audit Policy baseline was implemented. 
-
-By enforcing advanced auditing subcategories, the environment generates high-fidelity Event IDs crucial for threat hunting, compliance auditing, and detecting living-off-the-land techniques.
-
-<div align="center">
-  <table>
-    <tr>
-      <td><img src="https://github.com/user-attachments/assets/4f11df3f-08c9-4826-a3b2-d2a2e789719f" width="100%" alt="Description 1" /></td>
-      <td><img src="https://github.com/user-attachments/assets/9c8081ca-d386-4cca-8d7b-c297077103eb" width="100%" alt="Description 2" /></td>
-      <td><img src="https://github.com/user-attachments/assets/38445a02-cdf7-42fb-8b34-46b099c29663" width="100%" alt="Description 3" /></td>
-    </tr>
-    <tr>
-      <td align="center"><b>Label 1</b></td>
-      <td align="center"><b>Label 2</b></td>
-      <td align="center"><b>Label 3</b></td>
-    </tr>
-  </table>
-</div>
-
-```text
-lab.local (Domain Root)
-   └── 🏢 Prod_Enterprise
-       ├── 🔗 Sec_Advanced_Auditing (Linked at root for global visibility)
-       │   ├── 📁 Staff (Audits authentication anomalies)
-       │   └── 📁 Workstations (Audits local exploitation/process creation)
-```
----
----
----
-
-# Lab 3: Enterprise Automation & Scripting with PowerShell
-
-## 📌 Project Overview
 With the cloud network infrastructure ([Lab 1](../Part1-Secure-Azure-Networking)) and Active Directory identity plane ([Lab 2](../Part2-Active-Directory)) successfully deployed within a resource-constrained cloud framework (Microsoft Azure via Google Chromebook), this final phase focuses on operational efficiency, scalability, and DevOps methodologies. 
 
 By prioritizing Infrastructure-as-Code (IaC) principles, the entire Active Directory lifecycle—from tree topology provisioning to bulk identity ingestion and Group Policy hardening—was engineered utilizing modular, idempotent PowerShell scripting.
@@ -290,21 +160,12 @@ For an enterprise-grade lab environment, here are the standard baseline policies
 <div align="center">
   <table>
     <tr>
-      <td><img src="" width="100%" alt="Description 1" /></td>
-      <td><img src="" width="100%" alt="Description 2" /></td>
-      <td><img src="" width="100%" alt="Description 3" /></td>
-      <td><img src="" width="100%" alt="Description 4" /></td>
-      <td><img src="https://github.com/user-attachments/assets/27c3a912-905c-4af9-a1b6-48bced398456" width="100%" alt="Description 5" /></td>
-      <td><img src="https://github.com/user-attachments/assets/055ee461-684e-45fc-8d1f-c82150fbba03" width="100%" alt="Description 6" /></td>
-<img width="2736" height="1744" alt="AdvancedAuditingGPOAutoconfig2Git" src="https://github.com/user-attachments/assets/4f7a2c00-a75d-42c8-83df-04da332e1b42" />
+      <td><img src="https://github.com/user-attachments/assets/27c3a912-905c-4af9-a1b6-48bced398456" width="100%" alt="Description 1" /></td>
+      <td><img src="https://github.com/user-attachments/assets/817d4f4f-b2c0-42bb-8337-fb5ed560f83f" width="100%" alt="Description 2" /></td>
     </tr>
     <tr>
       <td align="center"><b>Label 1</b></td>
       <td align="center"><b>Label 2</b></td>
-      <td align="center"><b>Label 3</b></td>
-      <td align="center"><b>Label 4</b></td>
-      <td align="center"><b>Label 5</b></td>
-      <td align="center"><b>Label 6</b></td>
     </tr>
   </table>
 </div>
@@ -361,20 +222,12 @@ By enforcing advanced auditing subcategories, the environment generates high-fid
 <div align="center">
   <table>
     <tr>
-      <td><img src="[placeholder]" width="100%" alt="Description 1" /></td>
-      <td><img src="[placeholder]" width="100%" alt="Description 2" /></td>
-      <td><img src="[placeholder]" width="100%" alt="Description 3" /></td>
-      <td><img src="[placeholder]" width="100%" alt="Description 4" /></td>
-      <td><img src="[placeholder]" width="100%" alt="Description 5" /></td>
-      <td><img src="[placeholder]" width="100%" alt="Description 6" /></td>
+      <td><img src="https://github.com/user-attachments/assets/d00d25fe-69da-4700-9b1f-915e84c3d7db" width="100%" alt="Description 1" /></td>
+      <td><img src="https://github.com/user-attachments/assets/fb49110a-19c7-435b-a402-2b5bd475bc69" width="100%" alt="Description 2" /></td>
     </tr>
     <tr>
       <td align="center"><b>Label 1</b></td>
       <td align="center"><b>Label 2</b></td>
-      <td align="center"><b>Label 3</b></td>
-      <td align="center"><b>Label 3</b></td>
-      <td align="center"><b>Label 3</b></td>
-      <td align="center"><b>Label 3</b></td>
     </tr>
   </table>
 </div>
@@ -414,14 +267,12 @@ Because modern Windows endpoints protect security policy parameters strictly, th
 <div align="center">
   <table>
     <tr>
-      <td><img src="https://github.com/user-attachments/assets/c299bed7-a492-49ec-aed6-1c77abf61840" width="100%" alt="Description 1" /></td>
-      <td><img src="https://github.com/user-attachments/assets/ca116349-a790-4a89-aaa5-91012c916bdd" width="100%" alt="Description 2" /></td>
-      <td><img src="https://github.com/user-attachments/assets/245ce5d7-7208-4826-b441-48a30f1844ca" width="100%" alt="Description 3" /></td>
+      <td><img src="https://github.com/user-attachments/assets/0fb24ce2-a42c-4d28-8ba9-b5de91e50366" width="100%" alt="Description 1" /></td>
+      <td><img src="https://github.com/user-attachments/assets/04f8f9fd-023d-445c-bf6c-5fd602c51c62" width="100%" alt="Description 2" /></td>
     </tr>
     <tr>
       <td align="center"><b>Label 1</b></td>
       <td align="center"><b>Label 2</b></td>
-      <td align="center"><b>Label 3</b></td>
     </tr>
   </table>
 </div>
