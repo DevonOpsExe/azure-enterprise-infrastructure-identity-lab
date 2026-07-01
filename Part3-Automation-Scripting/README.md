@@ -223,7 +223,7 @@ By enforcing advanced auditing subcategories, the environment generates high-fid
   <table>
     <tr>
       <td><img src="https://github.com/user-attachments/assets/d00d25fe-69da-4700-9b1f-915e84c3d7db" width="100%" alt="Description 1" /></td>
-      <td><img src="https://github.com/user-attachments/assets/fb49110a-19c7-435b-a402-2b5bd475bc69" width="100%" alt="Description 2" /></td>
+      <td><img src="https://github.com/user-attachments/assets/de32c878-ee98-44cd-ab25-e9b6a71baabd" width="100%" alt="Description 2" /></td>
     </tr>
     <tr>
       <td align="center"><b>Label 1</b></td>
